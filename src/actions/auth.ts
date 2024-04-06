@@ -1,32 +1,14 @@
 const auth = {
-    signUp(
-      email: string,
-      first_name: string,
-      last_name: string,
-      password: string,
-      password2: string
-    ) {
-      const data = fetch(
-        `https://faberlick.pythonanywhere.com/accounts/register/`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            first_name,
-            last_name,
-            password,
-            password2,
-          }),
-        }
-      );
-      return data;
-    },
-    login(email: string, password: string) {
-      const data = fetch(`https://faberlick.pythonanywhere.com/accounts/login/`, {
+  signUp(
+    email: string,
+    first_name: string,
+    last_name: string,
+    password: string,
+    password2: string
+  ) {
+    const data = fetch(
+      `https://faberlick.pythonanywhere.com/accounts/register/`,
+      {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -34,28 +16,45 @@ const auth = {
         },
         body: JSON.stringify({
           email,
+          first_name,
+          last_name,
           password,
+          password2,
         }),
-      });
-      return data;
-    },
-    verify(otp: string) {
-      const data = fetch(
-        "https://faberlick.pythonanywhere.com/accounts/verify-email/",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            otp,
-          }),
-        }
-      );
-      return data;
-    },
-  };
-  
-  export default auth;
-  
+      }
+    );
+    return data;
+  },
+  login(email: string, password: string) {
+    const data = fetch(`https://faberlick.pythonanywhere.com/accounts/login/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    return data;
+  },
+  verify(otp: string) {
+    const data = fetch(
+      "https://faberlick.pythonanywhere.com/accounts/verify-email/",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          otp,
+        }),
+      }
+    );
+    return data;
+  },
+};
+
+export default auth;

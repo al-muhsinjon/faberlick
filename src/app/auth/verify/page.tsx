@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useState } from "react";
 
-const page = () => {
-  const [otp, setOtp] = useState("");
+const Verify = () => {
+  const [otp, setOtp] = useState<string>("");
 
-  const router = useRouter()
+  const router = useRouter();
   const verifyFun = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
@@ -17,8 +17,7 @@ const page = () => {
         .then((req) => {
           console.log(req);
         });
-        router.replace("/auth/login")
-
+      router.replace("/auth/login");
     } catch (error) {
       console.log(error);
     }
@@ -53,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Verify;
