@@ -11,10 +11,14 @@ import toast from "react-hot-toast";
 
 const ShoppingCart = () => {
   const router = useRouter();
-  const [total, setTotal] = useState<number>(0);
-  const [products, setProducts] = useState<Products[]>(
-    JSON.parse(localStorage.getItem("carts") as string) || []
-  );
+  const [products, setProducts] = useState<Products[]>([]);
+
+  useEffect(() => {
+    const storedCarts = localStorage.getItem("carts");
+    if (storedCarts) {
+      setProducts(JSON.parse(storedCarts));
+    }
+  }, []);
 
   const removeProduct = (id: number) => {
     const updatedCart = products.filter((product) => product.id !== id);
@@ -63,27 +67,43 @@ const ShoppingCart = () => {
   const handle = async () => {
     const token = JSON.parse(localStorage.getItem("token") as string) || "";
 
-    const tel = prompt("Iltimos telefon raqamingizni kiriting");
+    const requiredData = products.map((product) => ({
+      product: product.id,
+      quantity: product.quantity,
+    }));
+    console.log(requiredData);
 
-    console.log(tel);
+
+
+    //
+    const data = {
+      user: 2,
+      phone_number: "+998910576725",
+      is_processed: true,
+      items: requiredData,
+    };
+    console.log(data);
+    const jsonData = JSON.stringify(data);
 
     if (token.access_token) {
-      products.map((product) => {
-        fetch("https://faberlick.pythonanywhere.com/product/orders/", {
-          method: "POST",
-          body: JSON.stringify({
-            user: token.full_name,
-            phone_number: tel,
-            items: [
-              {
-                product: product.id,
-                quantity: product.quantity,
-              },
-            ],
-          }),
+      fetch(`${process.env.NEXT_FABERLIC_API}/product/orders/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          // Response ma'lumotlarini qaytaradi
+          console.log(result);
+          toast.success("Ariza topshirildi");
+        })
+        .catch((error) => {
+          // Xatolarni qaytaradi
+          console.error(error);
+          toast.error("Xatolik bor");
         });
-      });
-      toast.success("Ariza topshirildi");
     } else {
       router.replace("auth/login");
     }
@@ -260,9 +280,9 @@ const ShoppingCart = () => {
                 >
                   <path
                     d="M14.0002 9.33337V14M14.0002 18.6667H14.0118M25.6668 14C25.6668 20.4434 20.4435 25.6667 14.0002 25.6667C7.55684 25.6667 2.3335 20.4434 2.3335 14C2.3335 7.55672 7.55684 2.33337 14.0002 2.33337C20.4435 2.33337 25.6668 7.55672 25.6668 14Z"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </div>

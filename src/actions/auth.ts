@@ -6,27 +6,24 @@ const auth = {
     password: string,
     password2: string
   ) {
-    const data = fetch(
-      `https://faberlick.pythonanywhere.com/accounts/register/`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          first_name,
-          last_name,
-          password,
-          password2,
-        }),
-      }
-    );
+    const data = fetch(`${process.env.NEXT_FABERLIC_API}/accounts/register/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        first_name,
+        last_name,
+        password,
+        password2,
+      }),
+    });
     return data;
   },
   login(email: string, password: string) {
-    const data = fetch(`https://faberlick.pythonanywhere.com/accounts/login/`, {
+    const data = fetch(`${process.env.NEXT_FABERLIC_API}/accounts/login/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -41,7 +38,7 @@ const auth = {
   },
   verify(otp: string) {
     const data = fetch(
-      "https://faberlick.pythonanywhere.com/accounts/verify-email/",
+      `${process.env.NEXT_FABERLIC_API}/accounts/verify-email/`,
       {
         method: "POST",
         headers: {

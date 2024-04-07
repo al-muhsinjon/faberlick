@@ -2,14 +2,11 @@ import React from "react";
 import Languages from "./languages";
 import Link from "next/link";
 import Filter from "./filter";
-import Image from "next/image";
 import { ShoppingBag, User } from "lucide-react";
 import { Categories } from "@/interfaces";
 
 const Navbar = async () => {
-  const res = await fetch(
-    "https://faberlick.pythonanywhere.com/product/category/"
-  );
+  const res = await fetch(`${process.env.NEXT_FABERLIC_API}/product/category/`);
   const categories: Categories[] = await res.json();
   // macbook : xl, Tablet : md
   return (

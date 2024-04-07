@@ -20,7 +20,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetching = async () => {
       const res = await fetch(
-        "https://faberlick.pythonanywhere.com/product/product-filterGet"
+        `${process.env.NEXT_FABERLIC_API}/product/product-filterGet`
       );
       const product: Products[] = await res.json();
       console.log(product);
