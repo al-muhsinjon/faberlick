@@ -1,15 +1,39 @@
 "use client";
+
 import auth from "@/actions/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useEffect, useState } from "react";
 
+interface TokenProps {
+  access_token: string;
+  email: string;
+  full_name: string;
+  refresh_token: string;
+}
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [tokend, setToken] = useState<TokenProps | null>(null); // Tokend o'zgaruvchisini null qiymati bilan boshladik
   const [error, setError] = useState("");
   const router = useRouter();
-  const token = JSON.parse(localStorage.getItem("token") as string) || "";
+
+  useEffect(() => {
+    // Tokend o'zgaruvchisi o'zgarganida localStorage ga yozamiz
+    if (tokend) {
+      localStorage.setItem("token", JSON.stringify(tokend));
+    }
+  }, [tokend]);
+
+  // localStorage dan token o'zgaruvchisini olish
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(JSON.parse(storedToken));
+    }
+  }, []);
+
   const loginFunc = async (e: SyntheticEvent) => {
     e.preventDefault();
     await auth
@@ -17,29 +41,19 @@ const Login = () => {
       .then((data) => data.json())
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", JSON.stringify(response));
+        setToken(response);
+      })
+      .catch((error) => {
+        setError("Login failed. Please check your credentials.");
       });
   };
-  console.log(token);
 
   useEffect(() => {
-    if (token.access_token) {
+    // Token mavjud bo'lsa, avvalgi sahifaga o'tamiz
+    if (tokend?.access_token) {
       router.replace("/");
     }
-  }, []);
-
-  //   access_token
-  // :
-  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyMjk3NzgwLCJpYXQiOjE3MTIyOTcxODAsImp0aSI6ImUxMjdlMzhjZmJmODQ3Nzg4OGRlNmMwNDJhNjFiZjZmIiwidXNlcl9pZCI6NH0.lHsFaVx4-7ROhqg9ka4dWU0iQgBEZ6TtKVcq-1H6vnk"
-  // email
-  // :
-  // "muhsinjonmullajonov0@gmail.com"
-  // full_name
-  // :
-  // "Muhsinjon Mullajonov"
-  // refresh_token
-  // :
-  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxMjM4MzU4MCwiaWF0IjoxNzEyMjk3MTgwLCJqdGkiOiJjM2FlNmFiMmExZDE0MjA1YWFhOWE0ZDExNjhlN2MzYSIsInVzZXJfaWQiOjR9.tzRUqVHW7MCyZX6o80GEbBeZRfLVD4MMtMxazBWuUQ0"
+  }, [tokend, router]);
 
   return (
     <div className="grid place-items-center h-screen">
@@ -70,7 +84,8 @@ const Login = () => {
             </div>
           )}
           <Link href={"/auth/sign-up"}>
-            Don&apos;t have an account? <span className="underline">Register</span>
+            Don&apos;t have an account?{" "}
+            <span className="underline">Register</span>
           </Link>
         </form>
       </div>

@@ -1,8 +1,6 @@
 import Billboard from "@/components/billboard";
 import EntriesProduct from "@/components/entries";
 import PaginationControls from "@/components/pagination";
-import ProductCard from "@/components/product-card";
-import useFilter from "@/hooks/use-filter";
 import { Categories, Products } from "@/interfaces";
 
 interface CategoryProps {

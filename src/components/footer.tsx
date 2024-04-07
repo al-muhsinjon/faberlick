@@ -1,7 +1,6 @@
 import { Instagram, Send } from "lucide-react";
 import React from "react";
 import Link from "next/link";
-import FooterNav from "./footer-nav";
 
 const Footer = async () => {
   return (

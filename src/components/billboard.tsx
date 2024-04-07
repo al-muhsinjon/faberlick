@@ -1,6 +1,5 @@
 "use client";
 import useFilter from "@/hooks/use-filter";
-import useLanguage from "@/hooks/use-languages";
 import { Categories } from "@/types";
 
 interface BilboardProps {
@@ -9,7 +8,6 @@ interface BilboardProps {
 
 export const revalidate = 0;
 const Billboard: React.FC<BilboardProps> = ({ data }) => {
-  const lang = useLanguage();
   const filter = useFilter();
 
   return (

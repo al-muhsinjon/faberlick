@@ -73,8 +73,6 @@ const ShoppingCart = () => {
     }));
     console.log(requiredData);
 
-
-
     //
     const data = {
       user: 2,

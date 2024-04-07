@@ -1,6 +1,5 @@
 "use client";
 import useFilter from "@/hooks/use-filter";
-import Link from "next/link";
 const Filter = () => {
   const filter = useFilter();
 

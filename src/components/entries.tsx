@@ -1,7 +1,6 @@
 "use client";
 import useFilter from "@/hooks/use-filter";
 import ProductCard from "./product-card";
-import useLanguage from "@/hooks/use-languages";
 import { Products } from "@/types";
 
 interface EntriesProps {
@@ -12,7 +11,6 @@ interface EntriesProps {
 
 const EntriesProduct: React.FC<EntriesProps> = ({ filterData, start, end }) => {
   const filter = useFilter();
-  const lang = useLanguage();
 
   //   slice(start, end);
   return (

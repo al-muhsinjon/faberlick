@@ -1,8 +1,8 @@
 "use client";
 import auth from "@/actions/auth";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { SyntheticEvent,  useState } from "react";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
