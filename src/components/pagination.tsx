@@ -51,3 +51,4 @@ const PaginationControls: FC<PaginationControlsProps> = ({
 };
 
 export default PaginationControls;
+

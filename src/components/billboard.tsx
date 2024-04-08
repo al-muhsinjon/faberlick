@@ -12,7 +12,7 @@ const Billboard: React.FC<BilboardProps> = ({ data }) => {
 
   return (
     <div
-      className={` sm:p-6 ${
+      className={`sm:p-6 ${
         filter.text && "hidden"
       } lg:p-8 rounded-xl overflow-hidden`}
     >

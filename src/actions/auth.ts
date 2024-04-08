@@ -1,12 +1,12 @@
 const auth = {
   signUp(
     email: string,
-    first_name: string,
-    last_name: string,
-    password: string,
-    password2: string
+    ism: string,
+    familiya: string,
+    parol: string,
+    parolTasdiq: string
   ) {
-    const data = fetch(`${process.env.NEXT_FABERLIC_API}/accounts/register/`, {
+    const data = fetch(`https://faberlick.pythonanywhere.com/accounts/register/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -14,16 +14,16 @@ const auth = {
       },
       body: JSON.stringify({
         email,
-        first_name,
-        last_name,
-        password,
-        password2,
+        ism,
+        familiya,
+        parol,
+        parolTasdiq,
       }),
     });
     return data;
   },
-  login(email: string, password: string) {
-    const data = fetch(`${process.env.NEXT_FABERLIC_API}/accounts/login/`, {
+  login(email: string, parol: string) {
+    const data = fetch(`https://faberlick.pythonanywhere.com/accounts/login/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -31,14 +31,14 @@ const auth = {
       },
       body: JSON.stringify({
         email,
-        password,
+        parol,
       }),
     });
     return data;
   },
   verify(otp: string) {
     const data = fetch(
-      `${process.env.NEXT_FABERLIC_API}/accounts/verify-email/`,
+      `https://faberlick.pythonanywhere.com/accounts/verify-email/`,
       {
         method: "POST",
         headers: {

@@ -1,13 +1,12 @@
 "use client";
-
-import { Products } from "@/interfaces";
-import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { StarIcon } from "@heroicons/react/24/solid";
+import { Products } from "@/interfaces";
 
 const ShoppingCart = () => {
   const router = useRouter();
@@ -34,7 +33,6 @@ const ShoppingCart = () => {
           quantity: product.quantity + 1,
         };
       }
-
       return product;
     });
 
@@ -44,7 +42,6 @@ const ShoppingCart = () => {
 
   const handleDecrement = (id: number) => {
     const existProduct = products.find((product) => product.id === id);
-
     if (existProduct?.quantity === 1) {
       removeProduct(existProduct.id);
     } else {
@@ -55,7 +52,6 @@ const ShoppingCart = () => {
             quantity: product.quantity - 1,
           };
         }
-
         return product;
       });
 
@@ -64,46 +60,45 @@ const ShoppingCart = () => {
     }
   };
 
-  const handle = async () => {
-    const token = JSON.parse(localStorage.getItem("token") as string) || "";
-
-    const requiredData = products.map((product) => ({
-      product: product.id,
-      quantity: product.quantity,
-    }));
-    console.log(requiredData);
-
-    //
-    const data = {
-      user: 2,
-      phone_number: "+998910576725",
-      is_processed: true,
-      items: requiredData,
-    };
-    console.log(data);
-    const jsonData = JSON.stringify(data);
+  const handleCheckout = async () => {
+    const token = JSON.parse(localStorage.getItem("token") || "{}");
 
     if (token.access_token) {
-      fetch(`${process.env.NEXT_FABERLIC_API}/product/orders/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: jsonData,
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          // Response ma'lumotlarini qaytaradi
-          console.log(result);
+      const requiredData = products.map((product) => ({
+        product: product.id,
+        quantity: product.quantity,
+      }));
+
+      const data = {
+        user: 2,
+        phone_number: "+998910576725",
+        is_processed: true,
+        items: requiredData,
+      };
+
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_FABERLIC_API}/product/orders/`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (response.ok) {
           toast.success("Ariza topshirildi");
-        })
-        .catch((error) => {
-          // Xatolarni qaytaradi
-          console.error(error);
+        } else {
           toast.error("Xatolik bor");
-        });
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Xatolik bor");
+      }
     } else {
-      router.replace("auth/login");
+      router.replace("/auth/login");
     }
   };
 
@@ -193,7 +188,7 @@ const ShoppingCart = () => {
                             "en-US",
                             {
                               style: "currency",
-                              currency: "usd",
+                              currency: "USD",
                             }
                           )}
                         </p>
@@ -219,46 +214,10 @@ const ShoppingCart = () => {
                 </div>
               ))}
             </div>
-            {/* <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-              <div className="mb-2 flex justify-between">
-                <p className="text-gray-700">Subtotal</p>
-                <p className="text-gray-700">
-                  {total.toLocaleString("en-US", {
-                    currency: "usd",
-                    style: "currency",
-                  })}
-                </p>
-              </div>
-              <div className="flex justify-between">
-                <p className="text-gray-700">Shipping</p>
-                <p className="text-gray-700">
-                  {(10).toLocaleString("en-US", {
-                    currency: "usd",
-                    style: "currency",
-                  })}
-                </p>
-              </div>
-              <hr className="my-4" />
-              <div className="flex justify-between">
-                <p className="text-lg font-bold">Total</p>
-                <div className="">
-                  <p className="mb-1 text-lg font-bold">
-                    {(total + 10).toLocaleString("en-US", {
-                      currency: "usd",
-                      style: "currency",
-                    })}
-                  </p>
-                  <p className="text-sm text-gray-700">including VAT</p>
-                </div>
-              </div>
-              <button className="mt-6 w-full rounded-md bg-blue-500 py-4 font-medium  text-blue-50 hover:bg-blue-600">
-                Check out
-              </button>
-            </div> */}
           </div>
           <div className="flex justify-center items-center mt-12">
             <button
-              onClick={handle}
+              onClick={handleCheckout}
               className="py-4 px-6 bg-main text-white rounded-md"
             >
               Ariza qoldirish

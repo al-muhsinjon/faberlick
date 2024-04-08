@@ -2,19 +2,31 @@
 import auth from "@/actions/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { SyntheticEvent,  useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState("");
-  const [first_name, setFirst_name] = useState("");
-  const [last_name, setLast_name] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    first_name: "",
+    last_name: "",
+    password: "",
+    password2: "",
+  });
   const [error, setError] = useState("");
   const router = useRouter();
 
+  const handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   const registerFun = async (e: SyntheticEvent) => {
     e.preventDefault();
+    const { email, first_name, last_name, password, password2 } = formData;
+
     if (password !== password2) {
       setError("Parol ikkalasi ham bir xil emas");
       return;
@@ -25,11 +37,17 @@ const RegisterForm = () => {
         .signUp(email, first_name, last_name, password, password2)
         .then((result) => result.json())
         .then((req) => {
-          console.log(req);
+          console.log(req.first_name === 'This field is required.');
+          // if(req.fir)
+          //       first_name: [ 'This field is required.' ],
+          // last_name: [ 'This field is required.' ],
+          // password: [ 'This field is required.' ],
+          // password2: [ 'This field is required.' ]
         });
-      router.replace("/auth/verify");
+      // router.replace("/auth/verify");
     } catch (err) {
-      console.log("Error", err);
+      console.error("Error", err);
+      setError("Xatolik sodir bo'ldi");
     }
   };
 
@@ -40,43 +58,48 @@ const RegisterForm = () => {
         <form onSubmit={registerFun} className="flex flex-col gap-3">
           <input
             type="text"
-            value={first_name}
+            name="first_name"
+            value={formData.first_name}
             required
             placeholder="First Name"
             className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
-            onChange={(e) => setFirst_name(e.target.value)}
+            onChange={handleChange}
           />
           <input
             type="text"
-            value={last_name}
+            name="last_name"
+            value={formData.last_name}
             required
             placeholder="Last Name"
             className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
-            onChange={(e) => setLast_name(e.target.value)}
+            onChange={handleChange}
           />
           <input
             type="email"
-            value={email}
+            name="email"
+            value={formData.email}
             required
             placeholder="Email"
             className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
           />
           <input
             type="password"
-            value={password}
+            name="password"
+            value={formData.password}
             required
             placeholder="Parol"
             className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           />
           <input
             type="password"
-            value={password2}
+            name="password2"
+            value={formData.password2}
             required
             placeholder="Parolni qayta kiriting"
             className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
-            onChange={(e) => setPassword2(e.target.value)}
+            onChange={handleChange}
           />
 
           <button

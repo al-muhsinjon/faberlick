@@ -1,14 +1,36 @@
-import React from "react";
+// Navbar.tsx
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Languages from "./languages";
 import Link from "next/link";
-import Filter from "./filter";
 import { ShoppingBag, User } from "lucide-react";
 import { Categories } from "@/interfaces";
+import Filter from "./filter";
 
-const Navbar = async () => {
-  const res = await fetch(`${process.env.NEXT_FABERLIC_API}/product/category/`);
-  const categories: Categories[] = await res.json();
-  // macbook : xl, Tablet : md
+const Navbar: React.FC = () => {
+  const [categories, setCategories] = useState<Categories[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(
+          `https://faberlick.pythonanywhere.com/product/category/`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setCategories(data);
+        } else {
+          throw new Error("Failed to fetch categories");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
     <header className=" w-full  ">
       <div className=" px-[7%] bg-main flex relative items-center justify-between py-1">

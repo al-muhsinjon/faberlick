@@ -3,25 +3,27 @@ import auth from "@/actions/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useState } from "react";
+import { toast } from "react-hot-toast";
 
 const Verify = () => {
   const [otp, setOtp] = useState<string>("");
 
   const router = useRouter();
+  
+  
   const verifyFun = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
-      await auth
-        .verify(otp)
-        .then((data) => data.json())
-        .then((req) => {
-          console.log(req);
-        });
+      const response = await auth.verify(otp);
+      const data = await response.json();
+      console.log(data);
       router.replace("/auth/login");
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Emailni tasdiqlashda xatolik yuz berdi.");
     }
   };
+
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-main">

@@ -1,5 +1,4 @@
 "use client";
-
 import Button from "@/components/button";
 import Feature from "@/components/feature";
 import Hero from "@/components/hero";
@@ -8,29 +7,33 @@ import { Products } from "@/interfaces";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
-//Md = planshet  || Xl = Macbook
-
 const HomePage = () => {
   const handle = () => {
     toast.success("Welcome");
   };
 
-  const [lastProduct, setLastProduct] = useState<Products[]>();
+  const [lastProduct, setLastProduct] = useState<Products[]>([]);
 
   useEffect(() => {
     const fetching = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_FABERLIC_API}/product/product-filterGet`
-      );
-      const product: Products[] = await res.json();
-      console.log(product);
-      setLastProduct(product.splice(0, 3));
+      try {
+        const res = await fetch(
+          `https://faberlick.pythonanywhere.com/product/product-filterGet/`
+        );
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const products: Products[] = await res.json();
+        setLastProduct(products.slice(0, 3));
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
 
     fetching();
   }, []);
 
-  console.log(lastProduct);
+
   return (
     <div>
       <Hero />
@@ -58,7 +61,7 @@ const HomePage = () => {
             Eng yangi maxsulotlar
           </h1>
         </div>
-        {lastProduct?.map((product) => (
+        {lastProduct.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </section>

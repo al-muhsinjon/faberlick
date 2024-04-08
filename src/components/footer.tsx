@@ -2,22 +2,22 @@ import { Instagram, Send } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 
-const Footer = async () => {
+const Footer = () => {
   return (
-    <footer className="bg-main text-white  border-t">
+    <footer className="bg-main text-white border-t">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <Link href="/" className="text-3xl font-medium text-dark-blue">
             Faberlic
           </Link>
-          <ul className="flex flex-wrap w-[50%] items-center mb-6 text-sm font-medium text-gray sm:mb-0 ">
+          <ul className="flex flex-wrap w-full md:w-[50%] items-center mb-6 text-sm font-medium text-gray sm:mb-0 ">
             <li>Assa</li>
             <li>Assa</li>
             <li>Assa</li>
           </ul>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div className="sm:flex sm:items-center sm:justify-between">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2024{" "}
             <Link href="/" className="hover:underline">
@@ -25,15 +25,15 @@ const Footer = async () => {
             </Link>
             . All Rights Reserved.
           </span>
-          <div className="flex mt-4 sm:justify-center gap-6 sm:mt-0">
+          <div className="flex mt-4 md:mt-0 gap-6">
             <Link
-              className="p-3 bg-main text-white bg-opacity-90 hover:bg-opacity-100 hover:bg-white hover:text-main  border rounded-full"
+              className="p-3 bg-main text-white bg-opacity-90 hover:bg-opacity-100 hover:bg-white hover:text-main border rounded-full"
               href={"/"}
             >
               <Instagram />
             </Link>
             <Link
-              className="p-3 bg-main hover:bg-opacity-100 hover:bg-white hover:text-main text-white bg-opacity-90  border rounded-full"
+              className="p-3 bg-main hover:bg-opacity-100 hover:bg-white hover:text-main text-white bg-opacity-90 border rounded-full"
               href={"/"}
             >
               <Send />
