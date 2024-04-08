@@ -13,10 +13,10 @@ export const revalidate = 0;
 
 const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
   const res = await fetch(
-    `${process.env.NEXT_FABERLIC_API}/product/category/`
+    `https://faberlick.pythonanywhere.com/product/category/`
   );
   const productRes = await fetch(
-    `${process.env.NEXT_FABERLIC_API}/product/product-filterGet/`
+    `https://faberlick.pythonanywhere.com/product/product-filterGet/`
   );
   const categories: Categories[] = await res.json();
   const products: Products[] = await productRes.json();
