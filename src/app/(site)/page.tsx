@@ -8,8 +8,6 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const HomePage = () => {
- 
-
   const [lastProduct, setLastProduct] = useState<Products[]>([]);
 
   useEffect(() => {
@@ -30,7 +28,6 @@ const HomePage = () => {
 
     fetching();
   }, []);
-
 
   return (
     <div>
@@ -59,9 +56,11 @@ const HomePage = () => {
             Eng yangi maxsulotlar
           </h1>
         </div>
-        {lastProduct.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-1 gap-6 items-center">
+          {lastProduct.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </section>
       <Feature />
     </div>
