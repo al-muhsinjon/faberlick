@@ -1,18 +1,32 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import useLanguage from "@/hooks/use-languages";
 
-const languages = [{ name: "uz" }, { name: "en" }, { name: "ru" }];
+interface LanguageProps {
+  name: "en" | "uz" | "ru";
+}
+
+const languages: LanguageProps[] = [
+  { name: "en" },
+  { name: "uz" },
+  { name: "ru" },
+];
 
 export default function Languages() {
-  const [selected, setSelected] = useState(languages[0]);
+  const [selected, setSelected] = useState<LanguageProps>(languages[0]);
+  const language = useLanguage();
+
+  useEffect(() => {
+    language.changeLanguage(selected.name);
+  }, [selected]);
 
   return (
     <div className="w-44 z-50">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-main focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-main sm:text-sm">
             <span className="block truncate">
               {selected.name.toUpperCase()}
             </span>
@@ -35,7 +49,7 @@ export default function Languages() {
                   key={index}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                      active ? "bg-main text-white" : "text-gray-900"
                     }`
                   }
                   value={language}
@@ -50,7 +64,7 @@ export default function Languages() {
                         {language.name.toUpperCase()}
                       </span>
                       {selected && (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-main ">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
                       )}

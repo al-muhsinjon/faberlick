@@ -1,9 +1,83 @@
-import React from 'react'
+"use client";
+import Button from "@/components/button";
+import IconButton from "@/components/icon-button";
+import CustomImage from "@/components/image";
+import { Products } from "@/types";
+import { ShoppingBag, ShoppingBasket, ShoppingCart } from "lucide-react";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import React from "react";
+import toast from "react-hot-toast";
 
-const ProductPage = () => {
-  return (
-    <div>ProductPage</div>
-  )
+interface Props {
+  params: {
+    id: string;
+  };
 }
 
-export default ProductPage
+const ProductDetailedPage = async ({ params: { id } }: Props) => {
+  try {
+    const res = await fetch(
+      `https://faberlick.pythonanywhere.com/product/product-filterGet/${id}`
+    );
+    const product: Products = await res.json();
+
+    //
+    const handleClick = () => {
+      const products: Products[] = JSON.parse(
+        localStorage.getItem("carts") || "[]"
+      );
+
+      const updatedProducts = products.map((p) =>
+        p.id === product?.id ? { ...p, quantity: p.quantity + 1 } : p
+      );
+
+      if (products.find((p) => p.id === product?.id)) {
+        localStorage.setItem("carts", JSON.stringify(updatedProducts));
+      } else {
+        localStorage.setItem(
+          "carts",
+          JSON.stringify([...products, { ...product, quantity: 1 }])
+        );
+      }
+
+      toast.success("Maxsulotingiz qo'shildi");
+    };
+
+    //
+    const formattedPrice = new Intl.NumberFormat("en-US").format(product.price);
+    return (
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4 mt-48 pb-10">
+        <CustomImage product={product} />
+        <div className="divide-2">
+          <div className="space-y-2 pb-8">
+            <h1 className="text-2xl md:text-4xl font-bold">
+              {product.translations.en.name}
+            </h1>
+            <h2 className="text-black text-xl opacity-50 md:text-2xl font-bold">
+              {product.translations.en.short_description}
+            </h2>
+            <h2 className="text-gray-500 text-xl md:text-3xl font-bold">
+              {formattedPrice}
+            </h2>
+          </div>
+          <div className="pt-8">
+            <p className="text-xs md:text-sm">
+              {product.translations.en.description}
+            </p>
+          </div>
+          <IconButton
+            onClick={handleClick}
+            icon={<ShoppingCart />}
+            className="border mt-4"
+          />
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.log(error);
+    notFound();
+  }
+};
+
+export default ProductDetailedPage;

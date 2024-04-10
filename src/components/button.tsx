@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
         fill
           ? "bg-main text-white border-none"
           : "bg-transparent text-dark-blue border border-main"
-      } px-12 py-3 font-bold uppercase hover:bg-main hover:text-white ${className}`}
+      } md:px-12 xl:px-6 px-4 py-3 font-bold uppercase hover:bg-main hover:text-white ${className}`}
     >
       {children}
     </button>

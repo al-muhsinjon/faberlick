@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="px-[4%] my-14 hidden md:hidden lg:flex">
+    <div className="px-[4%] my-14 ">
       <div className="relative w-full">
         <Swiper
           navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
@@ -19,12 +19,12 @@ const Hero = () => {
           autoplay
           pagination={{ el: ".swiper-pagination", type: "bullets" }}
           modules={[Navigation, Pagination, Autoplay]}
-          className="w-[90%] h-[520px]"
+          className="w-[90%] h-[155px]  lg:h-[520px]"
         >
           {carouselData.map((carousel) => (
-            <SwiperSlide key={carousel.id} className="bg-green-300 flex justify-center relative items-center">
+            <SwiperSlide key={carousel.id} className=" flex justify-center relative items-center">
               <Link href={carousel.href}>
-                <Image src={carousel.img} alt="" fill className="object-cover" />
+                <Image src={carousel.img} alt="" fill className="object-contain" />
               </Link>
             </SwiperSlide>
           ))}

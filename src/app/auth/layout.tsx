@@ -3,6 +3,7 @@ export const metadata = {
   description: "Faberlic | store",
 };
 
+import { Toaster } from "react-hot-toast";
 import "../globals.css";
 
 export default function RootLayout({
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning={true}>
+      <Toaster position="top-center" reverseOrder={false} />
+        {children}</body>
     </html>
   );
 }

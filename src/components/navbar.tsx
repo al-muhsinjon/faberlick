@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ShoppingBag, User } from "lucide-react";
 import { Categories } from "@/interfaces";
 import Filter from "./filter";
+import useLanguage from "@/hooks/use-languages";
 
 const Navbar: React.FC = () => {
   const [categories, setCategories] = useState<Categories[]>([]);
@@ -30,7 +31,7 @@ const Navbar: React.FC = () => {
 
     fetchCategories();
   }, []);
-
+  const language = useLanguage();
   return (
     <header className=" w-full  ">
       <div className=" px-[7%] bg-main flex relative items-center justify-between py-1">
@@ -64,10 +65,10 @@ const Navbar: React.FC = () => {
         {categories.map((category) => (
           <Link
             className="text-2xl font-bold"
-            href={`/category/${category.translations.ru.name}`}
+            href={`/category/${category.translations.en.name}`}
             key={category.id}
           >
-            {category.translations.en.name.toUpperCase()}
+            {category.translations[language.language].name.toUpperCase()}
           </Link>
         ))}
       </div>

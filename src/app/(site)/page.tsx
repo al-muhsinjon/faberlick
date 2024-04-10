@@ -8,9 +8,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const HomePage = () => {
-  const handle = () => {
-    toast.success("Welcome");
-  };
+ 
 
   const [lastProduct, setLastProduct] = useState<Products[]>([]);
 
@@ -39,20 +37,20 @@ const HomePage = () => {
       <Hero />
 
       <div className="my-6 px-[8%]">
-        <div className="h-56 bg-[url(/since.png)] flex justify-around items-center">
-          <div className="flex flex-col justify-center items-start">
+        <div className="h-56 bg-[url(/sincee.png)] flex justify-around items-center">
+          {/* <div className="flex flex-col justify-center items-start">
             <h2 className="text-5xl font-bold uppercase my-4 ">
               up to 80% off.
             </h2>
             <Button onClick={handle} fill>
               Salom
             </Button>
-          </div>
-          <div className="bg-main w-36 h-36 flex items-center justify-center p-4 rounded-full">
+          </div> */}
+          {/* <div className="bg-main w-36 h-36 flex items-center justify-center p-4 rounded-full">
             <h2 className="uppercase text-white italic inline">
               trusted since 1997
             </h2>
-          </div>
+          </div> */}
         </div>
       </div>
       <section className="text-gray-600 px-[7%] body-font">

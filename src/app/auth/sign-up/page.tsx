@@ -3,6 +3,7 @@ import auth from "@/actions/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -33,27 +34,31 @@ const RegisterForm = () => {
     }
 
     try {
+      console.log(formData);
+      console.log(email, first_name, last_name, password, password2);
       await auth
         .signUp(email, first_name, last_name, password, password2)
         .then((result) => result.json())
         .then((req) => {
-          console.log(req.first_name === 'This field is required.');
+          console.log(req);
           // if(req.fir)
           //       first_name: [ 'This field is required.' ],
           // last_name: [ 'This field is required.' ],
           // password: [ 'This field is required.' ],
           // password2: [ 'This field is required.' ]
         });
-      // router.replace("/auth/verify");
+      router.replace("/auth/verify");
+      toast.success("Muvaffaqqiyatli kirish");
     } catch (err) {
       console.error("Error", err);
+      toast.error("Xatolik sodir bo'ldi");
       setError("Xatolik sodir bo'ldi");
     }
   };
 
   return (
-    <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p-5 rounded-lg border-t-4 border-main">
+    <div className="grid place-items-center p-6 h-screen">
+      <div className="shadow-lg w-full md:w-[400px] p-5 rounded-lg border-t-4 border-main">
         <h1 className="text-xl font-bold my-4">Register</h1>
         <form onSubmit={registerFun} className="flex flex-col gap-3">
           <input
@@ -62,7 +67,7 @@ const RegisterForm = () => {
             value={formData.first_name}
             required
             placeholder="First Name"
-            className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
+            className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
             onChange={handleChange}
           />
           <input
@@ -71,7 +76,7 @@ const RegisterForm = () => {
             value={formData.last_name}
             required
             placeholder="Last Name"
-            className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
+            className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
             onChange={handleChange}
           />
           <input
@@ -80,7 +85,7 @@ const RegisterForm = () => {
             value={formData.email}
             required
             placeholder="Email"
-            className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
+            className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
             onChange={handleChange}
           />
           <input
@@ -89,7 +94,7 @@ const RegisterForm = () => {
             value={formData.password}
             required
             placeholder="Parol"
-            className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
+            className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
             onChange={handleChange}
           />
           <input
@@ -98,7 +103,7 @@ const RegisterForm = () => {
             value={formData.password2}
             required
             placeholder="Parolni qayta kiriting"
-            className="w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40"
+            className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
             onChange={handleChange}
           />
 

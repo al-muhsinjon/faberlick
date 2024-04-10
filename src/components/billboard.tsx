@@ -1,5 +1,6 @@
 "use client";
 import useFilter from "@/hooks/use-filter";
+import useLanguage from "@/hooks/use-languages";
 import { Categories } from "@/types";
 
 interface BilboardProps {
@@ -10,6 +11,7 @@ export const revalidate = 0;
 const Billboard: React.FC<BilboardProps> = ({ data }) => {
   const filter = useFilter();
 
+  const language = useLanguage();
   return (
     <div
       className={`sm:p-6 ${
@@ -24,7 +26,7 @@ const Billboard: React.FC<BilboardProps> = ({ data }) => {
           <div className="font-bold text-3xl sm:text-5xl lg:text-6xl sm:max-w-3xl max-w-xs text-white">
             <div
               dangerouslySetInnerHTML={{
-                __html: data[0]?.translations.ru.description,
+                __html: data[0]?.translations[language.language].description,
               }}
             />
           </div>

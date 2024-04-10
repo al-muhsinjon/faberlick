@@ -27,10 +27,10 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
   const end = start + Number(per_page); // 5, 10, 15 ...
 
   const data = categories.filter(
-    (category) => category.translations.ru.name === params.categoryId
+    (category) => category.translations.en.name === params.categoryId
   );
   const filterData = products.filter(
-    (product) => product.category.translations.ru.name === params.categoryId
+    (product) => product.category.translations.en.name === params.categoryId
   );
 
   return (
