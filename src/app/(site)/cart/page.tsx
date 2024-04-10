@@ -390,8 +390,8 @@ const ShoppingCart = () => {
                   key={product.id}
                   className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
                 >
-                  <div className="relative w-52">
-                    <Image src={product.images[0]?.image} alt="" fill />
+                  <div className="relative md:w-52 h-32">
+                    <Image src={product.images[0].image} className="object-contain mx-auto  " alt="rasm" fill />
                   </div>
                   <div className="sm:ml-4 sm:flex sm:w-full gap-x-4 sm:justify-between">
                     <div className="mt-5 sm:mt-0">
@@ -497,11 +497,11 @@ const ShoppingCart = () => {
               placeholder="+998901234567"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-64 h-12 border-gray-300 px-4 mr-4 rounded-md focus:ring-main focus:border-main"
+              className="md:w-64 indent-3 h-12 border-gray-300 px-4 mr-4 rounded-md focus:ring-main focus:border-main"
             />
             <button
               onClick={handleCheckout}
-              className="py-4 px-6 bg-main text-white rounded-md"
+              className="md:py-4 md:px-6 py-3 px-3  bg-main text-white rounded-md"
             >
               Ariza qoldirish
             </button>

@@ -1,8 +1,33 @@
+"use client";
 import { Instagram, Send } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { Categories } from "@/interfaces";
+import useLanguage from "@/hooks/use-languages";
 
 const Footer = () => {
+  const [categories, setCategories] = useState<Categories[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(
+          `https://faberlick.pythonanywhere.com/product/category/`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setCategories(data);
+        } else {
+          throw new Error("Failed to fetch categories");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+  const lang = useLanguage();
   return (
     <footer className="bg-main text-white border-t">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -11,9 +36,15 @@ const Footer = () => {
             Faberlic
           </Link>
           <ul className="flex flex-wrap w-full md:w-[50%] items-center mb-6 text-sm font-medium text-gray sm:mb-0 ">
-            <li>Assa</li>
-            <li>Assa</li>
-            <li>Assa</li>
+            {categories.map((category) => (
+              <Link
+                key={category.id}
+                href={`/category/${category.translations.en.name}`}
+                className="text-white opacity-50"
+              >
+                {category.translations[lang.language].name.toUpperCase()}
+              </Link>
+            ))}
           </ul>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

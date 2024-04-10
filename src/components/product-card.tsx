@@ -139,33 +139,31 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="mx-3 mt-6 flex flex-col rounded-lg border bg-white text-surface shadow-secondary-1   sm:shrink-0 sm:grow sm:basis-0">
-      <Link className="relative h-[15rem]" href={`/product/${product.id}`}>
+      <Link className="relative md:h-[15rem] h-[6rem]" href={`/product/${product.id}`}>
         <Image
           fill
-          className="rounded-t-lg"
+          className="rounded-t-lg object-contain"
           src={images[0].image}
           alt="Palm Springs Road"
         />
       </Link>
-      <div className="p-6">
-        <h5 className="mb-2 text-xl font-medium leading-tight">
+      <div className="md:p-6 p-2">
+        <h5 className="mb-2 md:text-xl text-xs font-medium leading-tight">
           {translations[lang.language].name}
         </h5>
-        <p className="mb-2 text-base">
+       
+        <p className=" md:text-xl text-xs">
           {translations[lang.language].short_description}
         </p>
-        {/* <p className="line-clamp-2">
-          {translations[lang.language].description}
-        </p> */}
         <div>
-          <div className="flex items-center mt-2.5 mb-5">
+          <div className="flex items-center mt-2.5 mb-2">
             <Star className="text-yellow-500" />
             <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
               {average_rating}
             </span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="mb-4 text-base font-bold">
+            <span className="mb-4   text-xs md:text-base font-bold">
               {formattedPrice} so&apos;m
             </span>
             <IconButton

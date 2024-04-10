@@ -34,7 +34,7 @@ const HomePage = () => {
       <Hero />
 
       <div className="my-6 px-[8%]">
-        <div className="h-56 bg-[url(/sincee.png)] flex justify-around items-center">
+        <div className="md:h-56 bg-[url(/sincee.png)] h-24 bg-contain bg-no-repeat flex justify-around items-center">
           {/* <div className="flex flex-col justify-center items-start">
             <h2 className="text-5xl font-bold uppercase my-4 ">
               up to 80% off.
@@ -51,12 +51,12 @@ const HomePage = () => {
         </div>
       </div>
       <section className="text-gray-600 px-[7%] body-font">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5  mx-auto">
           <h1 className="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-2">
             Eng yangi maxsulotlar
           </h1>
         </div>
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-1 gap-6 items-center">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-2 md:gap-6 gap-2 items-center">
           {lastProduct.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

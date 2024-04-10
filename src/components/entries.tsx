@@ -14,7 +14,7 @@ const EntriesProduct: React.FC<EntriesProps> = ({ filterData, start, end }) => {
   const filter = useFilter();
   const language = useLanguage();
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-1 gap-6 items-center">
+    <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-2 gap-2 items-center">
       {filterData
         .filter((entry) => {
           return filter.text.toLowerCase() === ""

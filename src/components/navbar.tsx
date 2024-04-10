@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
       <div className="h-12 flex justify-around border-b flex-wrap gap-5 items-center">
         {categories.map((category) => (
           <Link
-            className="text-2xl font-bold"
+            className="md:text-2xl font-bold"
             href={`/category/${category.translations.en.name}`}
             key={category.id}
           >
