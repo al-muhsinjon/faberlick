@@ -274,11 +274,14 @@ import toast from "react-hot-toast";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { Products } from "@/interfaces";
+import useLanguage from "@/hooks/use-languages";
 
 const ShoppingCart = () => {
   const router = useRouter();
   const [products, setProducts] = useState<Products[]>([]);
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("+998");
+
+  const lang = useLanguage()
 
   useEffect(() => {
     const storedCarts = localStorage.getItem("carts");
@@ -396,10 +399,10 @@ const ShoppingCart = () => {
                   <div className="sm:ml-4 sm:flex sm:w-full gap-x-4 sm:justify-between">
                     <div className="mt-5 sm:mt-0">
                       <h2 className="text-lg font-bold text-gray-900 line-clamp-1">
-                        {product.translations.ru.name}
+                        {product.translations[lang.language].name}
                       </h2>
                       <p className="mt-1 text-xs text-gray-700 line-clamp-2">
-                        {product.translations.ru.description}
+                        {product.translations[lang.language].description}
                       </p>
                       <div className="flex items-center text-sm my-4">
                         <p>{product?.price}</p>
@@ -497,7 +500,7 @@ const ShoppingCart = () => {
               placeholder="+998901234567"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="md:w-64 indent-3 h-12 border-gray-300 px-4 mr-4 rounded-md focus:ring-main focus:border-main"
+              className="md:w-64 indent-3 h-12 border-black border px-4 mr-4 rounded-md focus:ring-main focus:border-main"
             />
             <button
               onClick={handleCheckout}

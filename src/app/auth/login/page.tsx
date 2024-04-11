@@ -124,9 +124,6 @@ const Login = () => {
               Ro&apos;yxatdan o&apos;tgansiz
             </h2>
             <div className="flex gap-5">
-              <Button onClick={logOut} fill>
-                Chiqish
-              </Button>
               <Button onClick={back}>Savatga qaytish</Button>
             </div>
           </div>
