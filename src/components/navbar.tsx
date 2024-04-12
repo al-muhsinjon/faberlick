@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
         {categories.map((category) => (
           <Link
             className="md:text-2xl font-bold"
-            href={`${local}/category/${category.translations.en.name}`}
+            href={`/${local}/category/${category.translations.en.name}`}
             key={category.id}
           >
             {category.translations[language.language].name.toUpperCase()}

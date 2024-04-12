@@ -143,7 +143,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     <div className="mx-3 mt-6 flex flex-col rounded-lg border bg-white text-surface shadow-secondary-1   sm:shrink-0 sm:grow sm:basis-0">
       <Link
         className="relative md:h-[15rem] h-[6rem]"
-        href={`${local}/product/${product.id}`}
+        href={`/${local}/product/${product.id}`}
       >
         <Image
           fill
