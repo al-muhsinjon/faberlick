@@ -115,7 +115,7 @@ const RegisterForm = () => {
               {error}
             </div>
           )}
-          <Link href={`${local}/auth/login`}>
+          <Link href={`/${local}/auth/login`}>
             {t("have")} <span className="underline">Login</span>
           </Link>
         </form>

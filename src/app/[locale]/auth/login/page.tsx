@@ -115,7 +115,7 @@ const Login = () => {
                   {error}
                 </div>
               )}
-              <Link href={`${local}/auth/sign-up`}>
+              <Link href={`/${local}/auth/sign-up`}>
                 {t("have")} <span className="underline">Register</span>
               </Link>
             </form>
