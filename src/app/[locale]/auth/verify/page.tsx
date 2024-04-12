@@ -17,7 +17,7 @@ const local = useLocale()
       const response = await auth.verify(otp);
       const data = await response.json();
       console.log(data)
-      router.replace(`${local}/auth/login`);
+      router.replace(`/${local}/auth/login`);
     } catch (error) {
       console.error(error);
       toast.error("Emailni tasdiqlashda xatolik yuz berdi.");

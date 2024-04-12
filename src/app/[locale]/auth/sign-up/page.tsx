@@ -44,7 +44,7 @@ const RegisterForm = () => {
         .then((req) => {
           console.log(req);
         });
-      router.replace("/auth/verify");
+      router.replace(`/${local}/auth/verify`);
       toast.success("Muvaffaqqiyatli kirish");
     } catch (err) {
       console.error("Error", err);
