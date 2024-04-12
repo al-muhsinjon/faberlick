@@ -2,6 +2,7 @@
 
 import auth from "@/actions/auth";
 import Button from "@/components/button";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useEffect, useState } from "react";
@@ -15,6 +16,8 @@ interface TokenProps {
 }
 
 const Login = () => {
+  const local = useLocale();
+  const t = useTranslations("Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tokend, setToken] = useState<TokenProps | null>(null); // Tokend o'zgaruvchisini null qiymati bilan boshladik
@@ -44,7 +47,7 @@ const Login = () => {
   }, [tokend]);
 
   const back = () => {
-    router.replace("/cart");
+    router.replace(`/${local}/cart`);
   };
   const logOut = () => {
     auth
@@ -85,24 +88,26 @@ const Login = () => {
       {!tokenCheck ? (
         <div className="grid place-items-center h-screen">
           <div className="shadow-lg p-5 rounded-lg border-t-4 border-main">
-            <h1 className="text-xl font-bold my-4">Login</h1>
+            <h1 className="text-xl font-bold my-4">{t("title")}</h1>
             <form onSubmit={loginFunc} className="flex flex-col gap-3">
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 placeholder="Email"
+                name="email"
                 className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
               />
               <input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                placeholder="Password"
+                name="password"
+                placeholder={t("placeholder")}
                 className="w-full border border-gray-200 py-2 px-6 bg-zinc-100/40"
               />
               <button className="bg-main text-white font-bold cursor-pointer px-6 py-2">
-                Login
+                {t("title")}
               </button>
 
               {error && (
@@ -110,9 +115,8 @@ const Login = () => {
                   {error}
                 </div>
               )}
-              <Link href={"/auth/sign-up"}>
-                Don&apos;t have an account?{" "}
-                <span className="underline">Register</span>
+              <Link href={`${local}/auth/sign-up`}>
+                {t("have")} <span className="underline">Register</span>
               </Link>
             </form>
           </div>
@@ -121,10 +125,10 @@ const Login = () => {
         <div className="flex justify-center h-screen items-center">
           <div>
             <h2 className="text-center text-3xl font-bold leading-loose my-4">
-              Ro&apos;yxatdan o&apos;tgansiz
+              {t("active")}
             </h2>
             <div className="flex gap-5">
-              <Button onClick={back}>Savatga qaytish</Button>
+              <Button onClick={back}>{t("bascket")}</Button>
             </div>
           </div>
         </div>

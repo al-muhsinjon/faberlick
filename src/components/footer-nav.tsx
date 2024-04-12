@@ -23,7 +23,7 @@ const FooterNav: React.FC<MainNavProps> = ({ data }) => {
                 ? "text-white"
                 : "text-neutral-500"
             }`}
-            href={''}
+            href={'/'}
           >
             Assa
           </Link>

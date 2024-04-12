@@ -3,6 +3,8 @@ import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import useLanguage from "@/hooks/use-languages";
+import { useLocale } from "next-intl";
+import { usePathname, useRouter } from "next/navigation";
 
 interface LanguageProps {
   name: "en" | "uz" | "ru";
@@ -15,11 +17,31 @@ const languages: LanguageProps[] = [
 ];
 
 export default function Languages() {
+  const localActive = useLocale();
   const [selected, setSelected] = useState<LanguageProps>(languages[0]);
   const language = useLanguage();
+  const router = useRouter();
+
+  const pathname = usePathname();
+  const soz = pathname.split(`${localActive}`)[1] || "";
+
+  const [active, setActive] = useState<"en" | "uz" | "ru">(
+    localActive !== "en" && localActive !== "uz" && localActive !== "ru"
+      ? "en"
+      : localActive
+  );
 
   useEffect(() => {
-    language.changeLanguage(selected.name);
+    if (localActive === "en") {
+      setActive("en");
+    } else if (localActive === "uz") {
+      setActive("uz");
+    } else if (localActive === "ru") {
+      setActive("ru");
+    } else {
+      setActive("en");
+    }
+    language.changeLanguage(active);
   }, [selected]);
 
   return (
@@ -27,9 +49,7 @@ export default function Languages() {
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-main focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-main sm:text-sm">
-            <span className="block truncate">
-              {selected.name.toUpperCase()}
-            </span>
+            <span className="block truncate">{localActive.toUpperCase()}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
@@ -53,6 +73,7 @@ export default function Languages() {
                     }`
                   }
                   value={language}
+                  onClick={() => router.push(`/${language.name}/${soz}`)}
                 >
                   {({ selected }) => (
                     <>

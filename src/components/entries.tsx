@@ -11,6 +11,7 @@ interface EntriesProps {
 }
 
 const EntriesProduct: React.FC<EntriesProps> = ({ filterData, start, end }) => {
+
   const filter = useFilter();
   const language = useLanguage();
   return (

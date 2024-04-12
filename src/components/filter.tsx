@@ -2,7 +2,7 @@
 import React from "react";
 import useFilter from "@/hooks/use-filter";
 
-const Filter = () => {
+const Filter = ({ placeholder }: { placeholder: string }) => {
   const filter = useFilter();
 
   const handleChange = (e: any) => {
@@ -15,7 +15,7 @@ const Filter = () => {
         onChange={handleChange}
         type="text"
         className="bg-transparent outline-none border-none w-full indent-3"
-        placeholder="Hey, what are you looking for?"
+        placeholder={placeholder}
       />
       <div className="h-full flex justify-center items-center w-12">
         <svg

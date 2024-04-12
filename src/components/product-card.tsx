@@ -105,12 +105,14 @@ import React from "react";
 import IconButton from "./icon-button";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { useLocale } from "next-intl";
 
 interface ProductCardProps {
   product: Products;
 }
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
+  const local = useLocale();
   const lang = useLanguage();
   const { translations, images, price, average_rating } = product;
 
@@ -139,7 +141,10 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="mx-3 mt-6 flex flex-col rounded-lg border bg-white text-surface shadow-secondary-1   sm:shrink-0 sm:grow sm:basis-0">
-      <Link className="relative md:h-[15rem] h-[6rem]" href={`/product/${product.id}`}>
+      <Link
+        className="relative md:h-[15rem] h-[6rem]"
+        href={`${local}/product/${product.id}`}
+      >
         <Image
           fill
           className="rounded-t-lg object-contain"
@@ -151,7 +156,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         <h5 className="mb-2 md:text-xl text-xs font-medium leading-tight">
           {translations[lang.language].name}
         </h5>
-       
+
         <p className=" md:text-xl text-xs">
           {translations[lang.language].short_description}
         </p>

@@ -1,10 +1,9 @@
 "use client";
-import Button from "@/components/button";
 import IconButton from "@/components/icon-button";
 import CustomImage from "@/components/image";
+import useLanguage from "@/hooks/use-languages";
 import { Products } from "@/types";
-import { ShoppingBag, ShoppingBasket, ShoppingCart } from "lucide-react";
-import Image from "next/image";
+import { ShoppingCart } from "lucide-react";
 import { notFound } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
@@ -16,6 +15,7 @@ interface Props {
 }
 
 const ProductDetailedPage = async ({ params: { id } }: Props) => {
+  const lang = useLanguage();
   try {
     const res = await fetch(
       `https://faberlick.pythonanywhere.com/product/product-filterGet/${id}`
@@ -52,10 +52,10 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
         <div className="divide-2">
           <div className="space-y-2 pb-8">
             <h1 className="text-2xl md:text-4xl font-bold">
-              {product.translations.en.name}
+              {product.translations[lang.language].name}
             </h1>
             <h2 className="text-black text-xl opacity-50 md:text-2xl font-bold">
-              {product.translations.en.short_description}
+              {product.translations[lang.language].short_description}
             </h2>
             <h2 className="text-gray-500 text-xl md:text-3xl font-bold">
               {formattedPrice}
@@ -63,7 +63,7 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
           </div>
           <div className="pt-8">
             <p className="text-xs md:text-sm">
-              {product.translations.en.description}
+              {product.translations[lang.language].description}
             </p>
           </div>
           <IconButton

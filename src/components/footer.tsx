@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Categories } from "@/interfaces";
 import useLanguage from "@/hooks/use-languages";
+import { useLocale } from "next-intl";
 
 const Footer = () => {
   const [categories, setCategories] = useState<Categories[]>([]);
+  const local = useLocale()
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -39,7 +41,7 @@ const Footer = () => {
             {categories.map((category) => (
               <Link
                 key={category.id}
-                href={`/category/${category.translations.en.name}`}
+                href={`${local}/category/${category.translations.en.name}`}
                 className="text-white opacity-50"
               >
                 {category.translations[lang.language].name.toUpperCase()}

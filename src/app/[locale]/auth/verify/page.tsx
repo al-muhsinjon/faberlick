@@ -1,13 +1,13 @@
 "use client";
 import auth from "@/actions/auth";
-import Link from "next/link";
+import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { SyntheticEvent, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const Verify = () => {
   const [otp, setOtp] = useState<string>("");
-
+const local = useLocale()
   const router = useRouter();
   
   
@@ -16,8 +16,8 @@ const Verify = () => {
     try {
       const response = await auth.verify(otp);
       const data = await response.json();
-      console.log(data);
-      router.replace("/auth/login");
+      console.log(data)
+      router.replace(`${local}/auth/login`);
     } catch (error) {
       console.error(error);
       toast.error("Emailni tasdiqlashda xatolik yuz berdi.");
@@ -45,9 +45,7 @@ const Verify = () => {
             Verify Email
           </button>
 
-          <Link href={"/auth/login"}>
-            Already have an account? <span className="underline">Login</span>
-          </Link>
+
         </form>
       </div>
     </div>

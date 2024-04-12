@@ -1,0 +1,54 @@
+{
+  "Navigation": {
+    "Navbar": {
+      "help": "Yordam va ma'lumot",
+      "connect": "Biz bilan bog'laning",
+      "placeholder": "Siz nimani izlayapsiz"
+    },
+    "Footer": {
+      "title": "Yordam va ma'lumot"
+    }
+  },
+  "Feature": {
+    "heading": "Xom Daniy merosxo'r odam Braid Selfies Wayfarers",
+    "learn": "Batafsil ma'lumot",
+    "blocks": {
+      "shoot": {
+        "title": "Otayotgan yulduzlar",
+        "description": "Moviy shisha xochga mixlangan vinil post-ironik to'rt dollarlik tushdi vegan taxidermi. Gastropub indigo sharbati poutine, rampalar mikro dozalash banh mi pug VHS try-hard ugh Islandiya kickstarter Tumblr live-edge tilde."
+      },
+      "catalyzer": {
+        "title": "Katalizator",
+        "description": "Moviy shisha xochga mixlangan vinil post-ironik to'rt dollarlik tushdi vegan taxidermi. Gastropub indigo sharbati poutine, rampalar mikro dozalash banh mi pug VHS try-hard ugh Islandiya kickstarter Tumblr live-edge tilde."
+      },
+      "neptune": {
+        "title": "Neptun",
+        "description": "Moviy shisha xochga mixlangan vinil post-ironik to'rt dollarlik tushdi vegan taxidermi. Gastropub indigo sharbati poutine, rampalar mikro dozalash banh mi pug VHS try-hard ugh Islandiya kickstarter Tumblr live-edge tilde."
+      }
+    }
+  },
+
+  "Login": {
+    "title": "Tizimga kirish",
+    "placeholder": "Parol",
+    "have": "Hisobingiz yo'qmi?",
+    "bascket": "Savatga qaytish",
+    "active": "Ro'yxatdan o'tgansiz"
+  },
+  "Register": {
+    "title": "Ro'yxatdan o'tish",
+    "placeholders": {
+      "first_name": "Ism",
+      "last_name": "Familiya",
+      "email": "Email",
+      "password": "Parol",
+      "password2": "Parolni yana kiriting"
+    },
+    "btn": "Ro'yxatdan o'tish",
+    "have": "Hisobingiz bormi?"
+  },
+  "Verify": {
+    "title": "Verify Email",
+    "placeholder": "OTP Parol"
+  }
+}

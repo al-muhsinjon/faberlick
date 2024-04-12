@@ -1,0 +1,53 @@
+{
+  "Navigation": {
+    "Navbar": {
+      "help": "Help & Information",
+      "connect": "Connect with us",
+      "placeholder": "What are you looking for"
+    },
+    "Footer": {
+      "title": "Help & Information"
+    }
+  },
+  "Feature": {
+    "heading": "Raw Denim Heirloom Man  Braid Selfies Wayfarers",
+    "learn": "Learn More",
+    "blocks": {
+      "shoot": {
+        "title": "Shooting Stars",
+        "description": "Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard ugh iceland kickstarter tumblr live-edge tilde."
+      },
+      "catalyzer": {
+        "title": "The Catalyzer",
+        "description": "Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard ugh iceland kickstarter tumblr live-edge tilde."
+      },
+      "neptune": {
+        "title": "Neptune",
+        "description": "Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard ugh iceland kickstarter tumblr live-edge tilde."
+      }
+    }
+  },
+  "Login": {
+    "title": "Login",
+    "placeholder": "Password",
+    "have": "Don't have an account?",
+    "bascket": "Back to cart",
+    "active": "You are registered"
+  },
+  "Register": {
+    "title": "Register",
+    "placeholders": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "password2": "Enter the password again"
+    },
+    "btn": "Register",
+    "have": "Already have an account?"
+  },
+  "Verify": {
+    "title": "Verify Email",
+    "placeholder": "OTP Password"
+  }
+}

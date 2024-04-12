@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import { create } from "zustand";
 
 interface LanguageProps {
@@ -7,6 +8,7 @@ interface LanguageProps {
   changeLanguage: (lang: "en" | "uz" | "ru") => void;
   onClose: () => void;
 }
+
 const useLanguage = create<LanguageProps>((set) => ({
   isOpen: false,
   language: "en",
