@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
     const fetchCategories = async () => {
       try {
         const res = await fetch(
-          `https://faberlick.pythonanywhere.com/product/category/`
+          `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/category/`
         );
         if (res.ok) {
           const data = await res.json();

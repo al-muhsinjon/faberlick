@@ -14,7 +14,7 @@ const HomePage = () => {
     const fetching = async () => {
       try {
         const res = await fetch(
-          `https://faberlick.pythonanywhere.com/product/product-filterGet/`
+          `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/`
         );
         if (!res.ok) {
           throw new Error("Network response was not ok");

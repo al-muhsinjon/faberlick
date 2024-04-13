@@ -7,7 +7,7 @@ const auth = {
     password2: string
   ) {
     const data = await fetch(
-      `https://faberlick.pythonanywhere.com/accounts/register/`,
+      `${process.env.NEXT_PUBLIC_FABERLIC_API}/accounts/register/`,
       {
         method: "POST",
         headers: {
@@ -27,7 +27,7 @@ const auth = {
   },
   async login(email: string, password: string) {
     const data = await fetch(
-      `https://faberlick.pythonanywhere.com/accounts/login/`,
+      `${process.env.NEXT_PUBLIC_FABERLIC_API}/accounts/login/`,
       {
         method: "POST",
         headers: {
@@ -44,7 +44,7 @@ const auth = {
   },
   async logOut(refresh_token: string) {
     const data = await fetch(
-      `https://faberlick.pythonanywhere.com/accounts/logout/`,
+      `${process.env.NEXT_PUBLIC_FABERLIC_API}/accounts/logout/`,
       {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ const auth = {
   },
   async verify(otp: string) {
     const data = await fetch(
-      `https://faberlick.pythonanywhere.com/accounts/verify-email/`,
+      `${process.env.NEXT_PUBLIC_FABERLIC_API}/accounts/verify-email/`,
       {
         method: "POST",
         headers: {

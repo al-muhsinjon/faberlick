@@ -18,7 +18,7 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
   const lang = useLanguage();
   try {
     const res = await fetch(
-      `https://faberlick.pythonanywhere.com/product/product-filterGet/${id}`
+      `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/${id}`
     );
     const product: Products = await res.json();
 

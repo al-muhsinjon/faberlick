@@ -10,6 +10,7 @@ import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { Products } from "@/interfaces";
 import useLanguage from "@/hooks/use-languages";
+import { useLocale } from "next-intl";
 
 const ShoppingCart = () => {
   const router = useRouter();
@@ -17,6 +18,7 @@ const ShoppingCart = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>("+998");
 
   const lang = useLanguage()
+  const local = useLocale()
 
   useEffect(() => {
     const storedCarts = localStorage.getItem("carts");
@@ -91,7 +93,7 @@ const ShoppingCart = () => {
 
       try {
         const response = await fetch(
-          `https://faberlick.pythonanywhere.com/product/orders/`,
+          `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/orders/`,
           {
             method: "POST",
             headers: {
@@ -112,7 +114,7 @@ const ShoppingCart = () => {
         toast.error("Xatolik bor");
       }
     }else {
-      router.replace("/auth/login")
+      router.replace(`/${local}/auth/login`)
     }
   };
 
