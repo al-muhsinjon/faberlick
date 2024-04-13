@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -17,8 +16,8 @@ const ShoppingCart = () => {
   const [products, setProducts] = useState<Products[]>([]);
   const [phoneNumber, setPhoneNumber] = useState<string>("+998");
 
-  const lang = useLanguage()
-  const local = useLocale()
+  const lang = useLanguage();
+  const local = useLocale();
 
   useEffect(() => {
     const storedCarts = localStorage.getItem("carts");
@@ -68,6 +67,7 @@ const ShoppingCart = () => {
     }
   };
 
+  console.log(process.env.NEXT_PUBLIC_FABERLIC_API);
   const handleCheckout = async () => {
     const token = JSON.parse(localStorage.getItem("token") || "{}");
 
@@ -89,7 +89,6 @@ const ShoppingCart = () => {
         is_processed: true,
         items: requiredData,
       };
-      
 
       try {
         const response = await fetch(
@@ -102,7 +101,6 @@ const ShoppingCart = () => {
             body: JSON.stringify(data),
           }
         );
-        
 
         if (response.ok) {
           toast.success("Ariza topshirildi");
@@ -113,8 +111,8 @@ const ShoppingCart = () => {
         console.error(error);
         toast.error("Xatolik bor");
       }
-    }else {
-      router.replace(`/${local}/auth/login`)
+    } else {
+      router.replace(`/${local}/auth/login`);
     }
   };
 
@@ -131,7 +129,12 @@ const ShoppingCart = () => {
                   className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
                 >
                   <div className="relative md:w-52 h-32">
-                    <Image src={product.images[0].image} className="object-contain mx-auto  " alt="rasm" fill />
+                    <Image
+                      src={product.images[0].image}
+                      className="object-contain mx-auto  "
+                      alt="rasm"
+                      fill
+                    />
                   </div>
                   <div className="sm:ml-4 sm:flex sm:w-full gap-x-4 sm:justify-between">
                     <div className="mt-5 sm:mt-0">
