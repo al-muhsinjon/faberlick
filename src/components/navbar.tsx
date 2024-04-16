@@ -9,11 +9,14 @@ import { Categories } from "@/interfaces";
 import Filter from "./filter";
 import useLanguage from "@/hooks/use-languages";
 import { useLocale, useTranslations } from "next-intl";
+import { Inter, Urbanist } from "next/font/google";
 
+const font = Inter({ subsets: ['latin'] })
+//  Urbanist({ subsets: ["latin"] });
 const Navbar: React.FC = () => {
   const [categories, setCategories] = useState<Categories[]>([]);
 
-  const local = useLocale()
+  const local = useLocale();
   const t = useTranslations("Navigation");
   useEffect(() => {
     const fetchCategories = async () => {
@@ -41,13 +44,16 @@ const Navbar: React.FC = () => {
         <Languages />
         <div className="text-white hidden  xl:flex gap-6">
           <Link href={"/"}>{t("Navbar.help")}</Link>
-          <Link href={"/"}>{t("Navbar.connect")}</Link>
+          <Link  href="tel:+998973470016">
+            {/* {t("Navbar.connect")} */}
+            +998 97 347 00 16
+          </Link>
         </div>
       </div>
       <div className="py-4 border-b xl:flex-row flex flex-col gap-y-6 justify-between px-[7%] items-center">
         <Filter placeholder={t("Navbar.placeholder")} />
-        <Link href="/" className="text-3xl font-medium text-dark-blue">
-          Faberlic
+        <Link href="/" className="text-3xl mr-12 font-medium text-dark-blue">
+          Faberliic
         </Link>
         <div className="flex items-center gap-6">
           <Link
@@ -67,7 +73,7 @@ const Navbar: React.FC = () => {
       <div className="h-12 flex justify-around border-b flex-wrap gap-5 items-center">
         {categories.map((category) => (
           <Link
-            className="md:text-2xl font-bold"
+            className={`${font.className} text-main md:text-2xl font-semibold`}
             href={`/${local}/category/${category.translations.en.name}`}
             key={category.id}
           >

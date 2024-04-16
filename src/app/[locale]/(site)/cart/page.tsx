@@ -9,7 +9,7 @@ import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { Products } from "@/interfaces";
 import useLanguage from "@/hooks/use-languages";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const ShoppingCart = () => {
   const router = useRouter();
@@ -18,6 +18,10 @@ const ShoppingCart = () => {
 
   const lang = useLanguage();
   const local = useLocale();
+
+  const toastT = useTranslations("Toasts");
+
+  // console.log()
 
   useEffect(() => {
     const storedCarts = localStorage.getItem("carts");
@@ -67,14 +71,13 @@ const ShoppingCart = () => {
     }
   };
 
-  console.log(process.env.NEXT_PUBLIC_FABERLIC_API);
   const handleCheckout = async () => {
     const token = JSON.parse(localStorage.getItem("token") || "{}");
 
     if (token.access_token) {
       // Telefon raqamni tekshirish
       if (!phoneNumber.trim()) {
-        toast.error("Iltimos, telefon raqamingizni kiriting");
+        toast.error(toastT("err"));
         return;
       }
 
@@ -103,18 +106,21 @@ const ShoppingCart = () => {
         );
 
         if (response.ok) {
-          toast.success("Ariza topshirildi");
+          toast.success(toastT("success"));
         } else {
-          toast.error("Xatolik bor");
+          toast.error(toastT("haveErr"));
         }
       } catch (error) {
         console.error(error);
-        toast.error("Xatolik bor");
+        toast.error(toastT("haveErr"));
       }
     } else {
       router.replace(`/${local}/auth/login`);
     }
   };
+
+  const formattedPrice = (a: number) =>
+    new Intl.NumberFormat("en-US").format(a);
 
   return (
     <>
@@ -130,7 +136,7 @@ const ShoppingCart = () => {
                 >
                   <div className="relative md:w-52 h-32">
                     <Image
-                      src={product.images[0].image}
+                      src={product.images[0]?.image || "/panel03.jpg"}
                       className="object-contain mx-auto  "
                       alt="rasm"
                       fill
@@ -189,7 +195,7 @@ const ShoppingCart = () => {
                         <input
                           className="h-8 w-8 border bg-white text-center indent-2 text-xs outline-none"
                           type="number"
-                          value={product.quantity}
+                          value={product?.quantity}
                           min="1"
                           readOnly
                         />
@@ -203,13 +209,7 @@ const ShoppingCart = () => {
                       </div>
                       <div className="flex items-center space-x-4">
                         <p className="text-sm">
-                          {(product.price * product.quantity).toLocaleString(
-                            "en-US",
-                            {
-                              style: "currency",
-                              currency: "USD",
-                            }
-                          )}
+                          {formattedPrice(product.price * product.quantity)}
                         </p>
                         <button onClick={() => removeProduct(product.id)}>
                           <svg

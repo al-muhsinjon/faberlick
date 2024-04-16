@@ -49,5 +49,18 @@
   "Verify": {
     "title": "Verify Email",
     "placeholder": "OTP Password"
+  },
+  "IndexPage": {
+    "new-products": "The newest products"
+  },
+  "Toasts": {
+    "err": "Please enter your phone number.",
+    "haveErr": "There is an error.",
+    "error": "Login failed. Please check your credentials.",
+    "passwordError": "The password is not the same for both.",
+    "otp": "OTP password has been sent by email.",
+    "success": "The application has been submitted.",
+    "succCart": "Your product has been added.",
+    "succLogin": "Login successful."
   }
 }

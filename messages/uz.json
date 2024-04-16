@@ -50,5 +50,18 @@
   "Verify": {
     "title": "Verify Email",
     "placeholder": "OTP Parol"
+  },
+  "IndexPage": {
+    "new-products": "Eng yangi maxsulotlar"
+  },
+  "Toasts": {
+    "err": "Iltimos, telefon raqamingizni kiriting.",
+    "haveErr": "Xatolik bor.",
+    "error": "Tizimga kirishda xatolik yuz berdi. Hisob ma'lumotlaringizni tekshiring.",
+    "passwordError": "Parol ikkalasi ham bir xil emas.",
+    "otp": "OTP paroli elektron pochta orqali yuborildi.",
+    "success": "Ariza topshirildi.",
+    "succCart": "Maxsulotingiz qo'shildi.",
+    "succLogin": "Muvaffaqqiyatli kirish"
   }
 }

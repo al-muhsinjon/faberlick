@@ -1,9 +1,12 @@
+
 "use client";
+
 import IconButton from "@/components/icon-button";
 import CustomImage from "@/components/image";
 import useLanguage from "@/hooks/use-languages";
 import { Products } from "@/types";
 import { ShoppingCart } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
@@ -14,37 +17,49 @@ interface Props {
   };
 }
 
-const ProductDetailedPage = async ({ params: { id } }: Props) => {
+const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
   const lang = useLanguage();
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/${id}`
+  const toastT = useTranslations("Toasts");
+
+  const fetchProduct = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/${id}`
+      );
+      const product: Products = await res.json();
+      return product;
+    } catch (error) {
+      console.log(error);
+      notFound();
+      return null;
+    }
+  };
+
+  const handleClick = async () => {
+    const product = await fetchProduct();
+    if (!product) return;
+
+    const products: Products[] = JSON.parse(
+      localStorage.getItem("carts") || "[]"
     );
-    const product: Products = await res.json();
 
-    //
-    const handleClick = () => {
-      const products: Products[] = JSON.parse(
-        localStorage.getItem("carts") || "[]"
+    const updatedProducts = products.map((p) =>
+      p.id === product?.id ? { ...p, quantity: p.quantity + 1 } : p
+    );
+
+    if (products.find((p) => p.id === product?.id)) {
+      localStorage.setItem("carts", JSON.stringify(updatedProducts));
+    } else {
+      localStorage.setItem(
+        "carts",
+        JSON.stringify([...products, { ...product, quantity: 1 }])
       );
+    }
 
-      const updatedProducts = products.map((p) =>
-        p.id === product?.id ? { ...p, quantity: p.quantity + 1 } : p
-      );
+    toast.success(toastT("succCart"));
+  };
 
-      if (products.find((p) => p.id === product?.id)) {
-        localStorage.setItem("carts", JSON.stringify(updatedProducts));
-      } else {
-        localStorage.setItem(
-          "carts",
-          JSON.stringify([...products, { ...product, quantity: 1 }])
-        );
-      }
-
-      toast.success("Maxsulotingiz qo'shildi");
-    };
-
-    //
+  const renderProductDetails = (product: Products) => {
     const formattedPrice = new Intl.NumberFormat("en-US").format(product.price);
     return (
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4 mt-48 pb-10">
@@ -63,7 +78,7 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
           </div>
           <div className="pt-8">
             <p className="text-xs md:text-sm">
-              {product.translations[lang.language].description}
+              {product.translations[lang.language]?.description}
             </p>
           </div>
           <IconButton
@@ -74,10 +89,15 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
         </div>
       </div>
     );
-  } catch (error) {
-    console.log(error);
-    notFound();
-  }
+  };
+
+  const [product, setProduct] = React.useState<Products | null>(null);
+
+  React.useEffect(() => {
+    fetchProduct().then((product) => setProduct(product));
+  }, []);
+
+  return product ? renderProductDetails(product) : null;
 };
 
 export default ProductDetailedPage;

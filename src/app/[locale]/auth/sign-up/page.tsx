@@ -7,8 +7,9 @@ import React, { SyntheticEvent, useState } from "react";
 import toast from "react-hot-toast";
 
 const RegisterForm = () => {
-  const local = useLocale()
+  const local = useLocale();
   const t = useTranslations("Register");
+  const toastT = useTranslations("Toasts");
   const [formData, setFormData] = useState({
     email: "",
     first_name: "",
@@ -33,6 +34,7 @@ const RegisterForm = () => {
 
     if (password !== password2) {
       setError("Parol ikkalasi ham bir xil emas");
+      toast.error(toastT(toastT("passwordError")));
       return;
     }
 

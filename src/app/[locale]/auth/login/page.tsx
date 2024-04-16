@@ -18,6 +18,7 @@ interface TokenProps {
 const Login = () => {
   const local = useLocale();
   const t = useTranslations("Login");
+  const toastT = useTranslations("Toasts");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tokend, setToken] = useState<TokenProps | null>(null); // Tokend o'zgaruvchisini null qiymati bilan boshladik
@@ -74,10 +75,11 @@ const Login = () => {
         }
         setToken(response);
         setTokenCheck(false);
+        toast.success(toastT("succLogin"));
         router.refresh();
-        toast.success("Login success");
       })
       .catch((error) => {
+        toast.error(toastT("error"));
         setError("Login failed. Please check your credentials.");
         console.log(error);
       });

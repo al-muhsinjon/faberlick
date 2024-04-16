@@ -4,11 +4,13 @@ import Feature from "@/components/feature";
 import Hero from "@/components/hero";
 import ProductCard from "@/components/product-card";
 import { Products } from "@/interfaces";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const HomePage = () => {
   const [lastProduct, setLastProduct] = useState<Products[]>([]);
+  const t = useTranslations("IndexPage");
 
   useEffect(() => {
     const fetching = async () => {
@@ -53,7 +55,7 @@ const HomePage = () => {
       <section className="text-gray-600 px-[7%] body-font">
         <div className="container px-5  mx-auto">
           <h1 className="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-2">
-            Eng yangi maxsulotlar
+            {t("new-products")}
           </h1>
         </div>
         <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-2 md:gap-6 gap-2 items-center">
