@@ -4,7 +4,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["faberlick.pythonanywhere.com", "tecdn.b-cdn.net"],
+    domains: ["faberlick.pythonanywhere.com", "faberliic.uz"],
   },
 };
 export default withNextIntl(nextConfig);
