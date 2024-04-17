@@ -39,7 +39,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
 
       <button
         className="bg-main text-white p-2 rounded-lg disabled:bg-opacity-80 disabled:cursor-not-allowed"
-        disabled={hasNextPage}
+        disabled={!hasNextPage}
         onClick={() => {
           router.push(`?page=${Number(page) + 1}&per_page=${per_page}`);
         }}
