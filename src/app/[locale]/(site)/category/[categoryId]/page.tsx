@@ -33,12 +33,14 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
     (product) => product.category.translations.en.name === params.categoryId
   );
 
+  const paginationData = filterData.splice(start, end);
+
   return (
     <div className="w-full mx-auto  px-[7%]">
       <div className="my-6">
         <Billboard data={data} />
       </div>
-      <EntriesProduct end={end} start={start} filterData={filterData} />
+      <EntriesProduct end={end} start={start} filterData={paginationData} />
 
       <div>
         <PaginationControls

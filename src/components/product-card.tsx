@@ -49,23 +49,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="w-full max-w-sm bg-white border h-auto border-gray-200 rounded-lg shadow ">
       <Link href={`/${local}/product/${product.id}`}>
         <div className="relative">
-          <span className="px-2 py-1 bg-main text-white left-4 z-10 uppercase absolute top-4">
+          <span className="px-2 py-1 bg-main text-white left-4 text-sm z-10 uppercase absolute top-4">
             {translations[lang.language].tag}
           </span>
         </div>
-        <div className="aspect-square h-56 lg:h-auto flex justify-center items-center rounded-xl bg-gray-100 relative">
+        <div className="aspect-square h-44 lg:h-auto flex justify-center items-center rounded-xl bg-gray-100 relative">
           <Image
             src={images[0]?.image || "/panel03.jpg"}
             fill
             alt="Image"
-            className="aspect-square object-cover xl:ml-auto ml-10 rounded-md p-6"
+            className="aspect-square object-cover rounded-md p-6"
           />
         </div>
       </Link>
       <div className="px-5 pb-5">
         <Link href={`/product/${product.id}`}>
           <div>
-            <h5 className="text-lg h-12 font-bold mb-2 md:text-xl  leading-tight  text-slate-800 ">
+            <h5 className="text-sm h-12 font-bold mb-2 md:text-xl line-clamp-3 leading-relaxed  text-slate-800 ">
               {translations[lang.language]?.name || "Faberlik mahsuloti"}
             </h5>
             <p className="font-semibold tracking-tight text-neutral-500">
@@ -81,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-gray-900 ">
+          <span className="md:text-xl text-xs font-bold text-gray-900 ">
             {formattedPrice} so&apos;m
           </span>
           <IconButton

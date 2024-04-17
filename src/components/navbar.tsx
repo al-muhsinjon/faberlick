@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
       </div>
-      <div className="h-12 flex justify-around border-b flex-wrap gap-5 items-center">
+      <div className="h-auto py-2 flex justify-around border-b flex-wrap gap-5 items-center">
         {categories.map((category) => (
           <Link
             className={`${font.className} text-main md:text-2xl font-semibold`}

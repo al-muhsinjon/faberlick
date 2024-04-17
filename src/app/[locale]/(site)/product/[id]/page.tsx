@@ -1,4 +1,3 @@
-
 "use client";
 
 import IconButton from "@/components/icon-button";
@@ -77,9 +76,12 @@ const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
             </h2>
           </div>
           <div className="pt-8">
-            <p className="text-xs md:text-sm">
-              {product.translations[lang.language]?.description}
-            </p>
+            <div
+              className="text-xs md:text-sm"
+              dangerouslySetInnerHTML={{
+                __html: product?.translations[lang.language].description,
+              }}
+            />
           </div>
           <IconButton
             onClick={handleClick}

@@ -147,9 +147,13 @@ const ShoppingCart = () => {
                       <h2 className="text-lg font-bold text-gray-900 line-clamp-1">
                         {product.translations[lang.language].name}
                       </h2>
-                      <p className="mt-1 text-xs text-gray-700 line-clamp-2">
-                        {product.translations[lang.language].description}
-                      </p>
+                      <div
+                        className="mt-1 text-xs text-gray-700 line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            product?.translations[lang.language].description,
+                        }}
+                      />
                       <div className="flex items-center text-sm my-4">
                         <p>{product?.price}</p>
                         {product?.translations && (
