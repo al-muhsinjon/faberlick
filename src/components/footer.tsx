@@ -1,5 +1,4 @@
 "use client";
-import { Instagram, Send } from "lucide-react";
 import { FaTelegramPlane, FaInstagram } from "react-icons/fa";
 
 import React, { useEffect, useState } from "react";
@@ -43,7 +42,7 @@ const Footer = () => {
             {categories.map((category) => (
               <Link
                 key={category.id}
-                href={`${local}/category/${category.translations.en.name}`}
+                href={`/${local}/category/${category.translations.en.name}`}
                 className="text-white opacity-50"
               >
                 {category.translations[lang.language].name.toUpperCase()}
