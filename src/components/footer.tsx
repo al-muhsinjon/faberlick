@@ -38,7 +38,7 @@ const Footer = () => {
           <Link href="/" className="text-3xl font-medium text-dark-blue">
             Faberlic
           </Link>
-          <ul className="flex flex-wrap w-full md:w-[50%] gap-6 items-center mb-6 text-sm font-medium text-gray sm:mb-0 ">
+          <ul className="flex flex-wrap w-full md:w-[50%] gap-6 items-center xl:mt-0 mt-4 mb-6 text-sm font-medium text-gray sm:mb-0 ">
             {categories.map((category) => (
               <Link
                 key={category.id}
