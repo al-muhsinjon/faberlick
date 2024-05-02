@@ -36,7 +36,7 @@ const Footer = () => {
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <Link href="/" className="text-3xl font-medium text-dark-blue">
-            Faberliic
+            Faberlic
           </Link>
           <ul className="flex flex-wrap w-full md:w-[50%] gap-6 items-center mb-6 text-sm font-medium text-gray sm:mb-0 ">
             {categories.map((category) => (
@@ -55,7 +55,7 @@ const Footer = () => {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2024{" "}
             <Link href="/" className="hover:underline">
-              Faberliic
+              Faberlic
             </Link>
             . All Rights Reserved.
           </span>

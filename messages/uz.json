@@ -10,20 +10,20 @@
     }
   },
   "Feature": {
-    "heading": "Xom Daniy merosxo'r odam Braid Selfies Wayfarers",
+    "heading": "Biz sizga nimalarni taklif qilamiz?",
     "learn": "Batafsil ma'lumot",
     "blocks": {
       "shoot": {
-        "title": "Otayotgan yulduzlar",
-        "description": "Moviy shisha xochga mixlangan vinil post-ironik to'rt dollarlik tushdi vegan taxidermi. Gastropub indigo sharbati poutine, rampalar mikro dozalash banh mi pug VHS try-hard ugh Islandiya kickstarter Tumblr live-edge tilde."
+        "title": "Kompaniyamiz haqida",
+        "description": "Faberlic kompaniyasi bu kosmetika, kiyim-kechak, aksessuarlar va boshqa toifadagi tovarlarni ishlab chiqaruvchi xalqaro savdo kompaniyasi. U 1997-yilda tashkil etilgan va 2001-yildan buyon shu nom bilan faoliyat yuritib kelmoqda."
       },
       "catalyzer": {
-        "title": "Katalizator",
-        "description": "Moviy shisha xochga mixlangan vinil post-ironik to'rt dollarlik tushdi vegan taxidermi. Gastropub indigo sharbati poutine, rampalar mikro dozalash banh mi pug VHS try-hard ugh Islandiya kickstarter Tumblr live-edge tilde."
+        "title": "Dunyo miqyosidagi o'rni",
+        "description": "Faberlic kompaniyasi hozirda dunyoda 1-o'rinni egallagan erkaklar va ayollar uchun samarali sinalgan mahsulotlar olami. Hozirda kompaniyamiz 50dan ortiq davlatlarning millionlab insonlari ishonchini qozongan."
       },
       "neptune": {
-        "title": "Neptun",
-        "description": "Moviy shisha xochga mixlangan vinil post-ironik to'rt dollarlik tushdi vegan taxidermi. Gastropub indigo sharbati poutine, rampalar mikro dozalash banh mi pug VHS try-hard ugh Islandiya kickstarter Tumblr live-edge tilde."
+        "title": "Ro'yxatdan muammosiz o'tish",
+        "description": "Birinchi navbatda websaytda registratsiya tugmasi bosiladi. So'ng, Mijozning Ism-sharifi va elektron pochta tizimi kiritiladi va ikkita parol kiritiladi. Qisqa muddatdan so'ng e-mail pochtangizga tasdiqlash kodi keladi."
       }
     }
   },
@@ -53,6 +53,11 @@
   },
   "IndexPage": {
     "new-products": "Eng yangi maxsulotlar"
+  },
+  "gender": {
+    "men": "Erkaklar",
+    "women": "Ayollar",
+    "all": "Barchasi"
   },
   "Toasts": {
     "err": "Iltimos, telefon raqamingizni kiriting.",

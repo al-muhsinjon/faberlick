@@ -10,20 +10,20 @@
     }
   },
   "Feature": {
-    "heading": "Raw Denim Heirloom Man  Braid Selfies Wayfarers",
+    "heading": "What do we offer you?",
     "learn": "Learn More",
     "blocks": {
       "shoot": {
-        "title": "Shooting Stars",
-        "description": "Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard ugh iceland kickstarter tumblr live-edge tilde."
+        "title": "About our company",
+        "description": "Faberlic is an international trading company that manufactures cosmetics, clothing, accessories and other product categories. It was founded in 1997 and has been operating under this name since 2001."
       },
       "catalyzer": {
-        "title": "The Catalyzer",
-        "description": "Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard ugh iceland kickstarter tumblr live-edge tilde."
+        "title": "A role on a global scale.",
+        "description": "Faberlic currently ranks 1st in the world in terms of product quality for both men and women. Currently, our company has gained the trust of millions of people from more than 50 countries."
       },
       "neptune": {
-        "title": "Neptune",
-        "description": "Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard ugh iceland kickstarter tumblr live-edge tilde."
+        "title": "Register without any problems",
+        "description": "The first thing to do is to click the registration button on the website. Then the client's name and email system are entered, and two passwords are entered. A confirmation code will be sent to your email in a short time."
       }
     }
   },
@@ -52,6 +52,11 @@
   },
   "IndexPage": {
     "new-products": "The newest products"
+  },
+  "gender": {
+    "men": "Men",
+    "women": "Women",
+    "all": "All"
   },
   "Toasts": {
     "err": "Please enter your phone number.",

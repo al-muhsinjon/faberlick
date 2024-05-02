@@ -23,14 +23,15 @@ const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
   const fetchProduct = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/${id}`
+        `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/${id}/`
       );
+     
       const product: Products = await res.json();
       return product;
     } catch (error) {
       console.log(error);
       notFound();
-      return null;
+      // return null;
     }
   };
 

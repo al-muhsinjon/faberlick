@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
       <div className="py-4 border-b xl:flex-row flex flex-col gap-y-6 justify-between px-[7%] items-center">
         <Filter placeholder={t("Navbar.placeholder")} />
         <Link href="/" className="text-3xl mr-12 font-medium text-dark-blue">
-          Faberliic
+          Faberlic
         </Link>
         <div className="flex items-center gap-6">
           <Link

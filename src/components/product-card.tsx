@@ -43,6 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
   const lang = useLanguage();
   const { translations, images, price, average_rating } = product;
+  const dataImage = images[0]?.image.split('uz').join("uz/django")
 
   const formattedPrice = new Intl.NumberFormat("en-US").format(price);
   return (
@@ -55,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         <div className="aspect-square h-44 lg:h-auto flex justify-center items-center rounded-xl bg-gray-100 relative">
           <Image
-            src={images[0]?.image || "/panel03.jpg"}
+            src={dataImage || "/panel03.jpg"}
             fill
             alt="Image"
             className="aspect-square object-cover rounded-md p-6"

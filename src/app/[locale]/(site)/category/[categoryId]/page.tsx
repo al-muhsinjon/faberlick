@@ -1,5 +1,6 @@
 import Billboard from "@/components/billboard";
 import EntriesProduct from "@/components/entries";
+import Gender from "@/components/gender";
 import PaginationControls from "@/components/pagination";
 import { Categories, Products } from "@/interfaces";
 
@@ -18,6 +19,7 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
   const productRes = await fetch(
     `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/`
   );
+
   const categories: Categories[] = await res.json();
   const products: Products[] = await productRes.json();
 
@@ -39,6 +41,7 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
     <div className="w-full mx-auto  px-[7%]">
       <div className="my-6">
         <Billboard data={data} />
+        <Gender />
       </div>
       <EntriesProduct end={end} start={start} filterData={paginationData} />
 
