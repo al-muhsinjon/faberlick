@@ -57,7 +57,8 @@
   "gender": {
     "men": "Erkaklar",
     "women": "Ayollar",
-    "all": "Barchasi"
+    "all": "Barchasi",
+    "product": "Mahsulotlar"
   },
   "Toasts": {
     "err": "Iltimos, telefon raqamingizni kiriting.",

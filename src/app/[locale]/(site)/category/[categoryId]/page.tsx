@@ -41,8 +41,8 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
     <div className="w-full mx-auto  px-[7%]">
       <div className="my-6">
         <Billboard data={data} />
-        <Gender />
       </div>
+      <Gender />
       <EntriesProduct end={end} start={start} filterData={paginationData} />
 
       <div>

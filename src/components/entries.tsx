@@ -22,7 +22,7 @@ const EntriesProduct: React.FC<EntriesProps> = ({ filterData, start, end }) => {
   );
 
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-2 gap-2 items-center">
+    <div className="grid md:grid-cols-2 xl:gap-6 xl:grid-cols-4 grid-cols-2 gap-2 items-center">
       {filteringData
         .filter((entry) => {
           return filter.text.toLowerCase() === ""

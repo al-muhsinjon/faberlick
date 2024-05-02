@@ -43,23 +43,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
   const lang = useLanguage();
   const { translations, images, price, average_rating } = product;
-  const dataImage = images[0]?.image.split('uz').join("uz/django")
+  const dataImage = images[0]?.image.split("uz").join("uz/django");
 
   const formattedPrice = new Intl.NumberFormat("en-US").format(price);
   return (
-    <div className="w-full max-w-sm bg-white border h-auto border-gray-200 rounded-lg shadow ">
+    <div className="w-full max-w-sm bg-white border relative h-auto border-gray rounded-lg shadow ">
       <Link href={`/${local}/product/${product.id}`}>
         <div className="relative">
           <span className="px-2 py-1 bg-main text-white left-4 text-sm z-10 uppercase absolute top-4">
             {translations[lang.language].tag}
           </span>
         </div>
-        <div className="aspect-square h-44 lg:h-auto flex justify-center items-center rounded-xl bg-gray-100 relative">
+        <div className="aspect-square h-44 w-full lg:h-auto top-0 left-0 rounded-xl  relative">
           <Image
             src={dataImage || "/panel03.jpg"}
             fill
             alt="Image"
-            className="aspect-square object-cover rounded-md p-6"
+            className="aspect-square object-cover rounded-md p-4"
           />
         </div>
       </Link>

@@ -22,7 +22,7 @@ const HomePage = () => {
           throw new Error("Network response was not ok");
         }
         const products: Products[] = await res.json();
-        setLastProduct(products.slice(0, 3));
+        setLastProduct(products.slice(0, 4));
       } catch (error) {
         console.error("Error fetching products:", error);
       }

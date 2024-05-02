@@ -56,7 +56,8 @@
   "gender": {
     "men": "Men",
     "women": "Women",
-    "all": "All"
+    "all": "All",
+    "product": "Products"
   },
   "Toasts": {
     "err": "Please enter your phone number.",
