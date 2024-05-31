@@ -7,6 +7,7 @@ import { Categories } from "@/interfaces";
 import useLanguage from "@/hooks/use-languages";
 import { useLocale } from "next-intl";
 
+
 const Footer = () => {
   const [categories, setCategories] = useState<Categories[]>([]);
   const local = useLocale();
