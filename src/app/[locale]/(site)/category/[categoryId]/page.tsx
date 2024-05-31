@@ -28,11 +28,12 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
   const start = (Number(page) - 1) * Number(per_page); // 0, 5, 10 ...
   const end = start + Number(per_page); // 5, 10, 15 ...
 
+
   const data = categories.filter(
-    (category) => category.translations.en.name === params.categoryId
+    (category) => category.id === Number(params.categoryId)
   );
   const filterData = products.filter(
-    (product) => product.category.translations.en.name === params.categoryId
+    (product) => product.category.id === Number(params.categoryId)
   );
 
   const paginationData = filterData.splice(start, end);

@@ -23,6 +23,7 @@ const HomePage = () => {
         }
         const products: Products[] = await res.json();
         setLastProduct(products.slice(0, 4));
+        // console.log(lastProduct);
       } catch (error) {
         console.error("Error fetching products:", error);
       }

@@ -42,7 +42,7 @@ const Footer = () => {
             {categories.map((category) => (
               <Link
                 key={category.id}
-                href={`/${local}/category/${category.translations.en.name}`}
+                href={`/${local}/category/${category.id}`}
                 className="text-white opacity-50"
               >
                 {category.translations[lang.language].name.toUpperCase()}

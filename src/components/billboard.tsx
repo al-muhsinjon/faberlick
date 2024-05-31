@@ -11,8 +11,8 @@ export const revalidate = 0;
 const Billboard: React.FC<BilboardProps> = ({ data }) => {
   const filter = useFilter();
 
-  const dataImage = data[0]?.image.split("uz").join("uz/django");
-  // console.log(data[0]?.image)
+  // const dataImage = data[0]?.image.split("uz").join("uz/django");
+
 
   const language = useLanguage();
   return (
@@ -22,7 +22,7 @@ const Billboard: React.FC<BilboardProps> = ({ data }) => {
       } lg:p-8 rounded-xl overflow-hidden`}
     >
       <div
-        style={{ backgroundImage: `url(${dataImage})` }}
+        style={{ backgroundImage: `url(${data[0]?.image})` }}
         className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover"
       >
         <div className="h-full w-full flex flex-col justify-center text-center items-center gap-y-8 ">
