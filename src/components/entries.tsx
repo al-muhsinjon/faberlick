@@ -22,7 +22,7 @@ const EntriesProduct: React.FC<EntriesProps> = ({ filterData, start, end }) => {
     .filter((filt) =>
       gender.gender === ""
         ? filt
-        : filt.translations.en.tag.toLowerCase() === gender.gender
+        : filt.translations.en?.tag.toLowerCase() === gender.gender
     );
 
   return (

@@ -17,7 +17,7 @@ const HomePage = () => {
   const filteringData = lastProduct.filter((filt) =>
     gender.gender === ""
       ? filt
-      : filt.translations.en.tag.toLowerCase() === gender.gender
+      : filt.translations.en?.tag.toLowerCase() === gender.gender
   );
 
   // console.log();
