@@ -3,11 +3,12 @@ import useLanguage from "@/hooks/use-languages";
 import { Products } from "@/types";
 import { ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import IconButton from "./icon-button";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Products;
@@ -16,9 +17,11 @@ interface ProductCardProps {
 export const revalidate = 0;
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const router = useRouter();
   const toastT = useTranslations("Toasts");
   const local = useLocale();
-  const handleClick = () => {
+  const handleClick = (e: SyntheticEvent) => {
+    e.stopPropagation();
     const products: Products[] =
       JSON.parse(localStorage.getItem("carts") as string) || [];
 
@@ -41,16 +44,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
     toast.success(toastT("succCart"));
   };
+  const onPushed = () => {
+    router.push(`/${local}/product/${product.id}`);
+  };
   const lang = useLanguage();
   const { translations, images, price, average_rating } = product;
 
   const formattedPrice = new Intl.NumberFormat("en-US").format(price);
   return (
-    <div className="w-full max-w-sm bg-white border relative h-auto border-gray rounded-lg shadow ">
-      <Link href={`/${local}/product/${product.id}`}>
+    <div
+      onClick={onPushed}
+      className="w-full max-w-sm cursor-pointer bg-white border relative h-auto border-gray rounded-lg shadow "
+    >
+      <div>
         <div className="relative">
           <span className="px-2 py-1 bg-main text-white left-4 text-sm z-10 uppercase absolute top-4">
-            {translations[lang.language].tag}
+            {translations[lang.language]?.tag}
           </span>
         </div>
         <div className="aspect-square h-44 w-full lg:h-auto top-0 left-0 rounded-xl  relative">
@@ -61,9 +70,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="aspect-square object-cover rounded-md p-4"
           />
         </div>
-      </Link>
+      </div>
       <div className="px-5 pb-5">
-        <Link href={`/product/${product.id}`}>
+        <div>
           <div>
             <h5 className="text-sm h-12 font-bold mb-2 md:text-xl line-clamp-3 leading-relaxed  text-slate-800 ">
               {translations[lang.language]?.name || "Faberlik mahsuloti"}
@@ -72,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               {translations[lang.language]?.short_description || "New Product"}
             </p>
           </div>
-        </Link>
+        </div>
 
         <div className="flex items-center mt-2.5 mb-5">
           <Star className="text-yellow-500" />

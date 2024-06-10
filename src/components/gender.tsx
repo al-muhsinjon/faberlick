@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { MdFilterList } from "react-icons/md";
 
-const Gender = () => {
+const Gender = ({ maxs }: { maxs?: boolean }) => {
   const [active, setActive] = useState(false);
 
   const gender = useGender();
@@ -17,7 +17,7 @@ const Gender = () => {
 
   return (
     <div className="flex justify-between mb-4 relative">
-      <div>{t("product")}</div>
+      {maxs ? "" : <div>{t("product")}</div>}
       <div
         className="cursor-pointer flex items-center gap-2"
         onClick={() => setActive(!active)}

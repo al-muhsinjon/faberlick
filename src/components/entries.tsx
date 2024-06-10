@@ -15,11 +15,15 @@ const EntriesProduct: React.FC<EntriesProps> = ({ filterData, start, end }) => {
   const filter = useFilter();
   const language = useLanguage();
   let gender = useGender();
-  const filteringData = filterData.filter((filt) =>
-    gender.gender === ""
-      ? filt
-      : filt.translations.en.tag.toLowerCase() === gender.gender
-  );
+
+
+  const filteringData = filterData
+    .slice(start, end)
+    .filter((filt) =>
+      gender.gender === ""
+        ? filt
+        : filt.translations.en.tag.toLowerCase() === gender.gender
+    );
 
   return (
     <div className="grid md:grid-cols-2 xl:gap-6 xl:grid-cols-4 grid-cols-2 gap-2 items-center">

@@ -1,15 +1,27 @@
 "use client";
 import Button from "@/components/button";
 import Feature from "@/components/feature";
+import Gender from "@/components/gender";
 import Hero from "@/components/hero";
 import ProductCard from "@/components/product-card";
+import useGender from "@/hooks/use-gender";
 import { Products } from "@/interfaces";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 
 const HomePage = () => {
+  let gender = useGender();
+
   const [lastProduct, setLastProduct] = useState<Products[]>([]);
+  const filteringData = lastProduct.filter((filt) =>
+    gender.gender === ""
+      ? filt
+      : filt.translations.en.tag.toLowerCase() === gender.gender
+  );
+
+  // console.log();
+
   const t = useTranslations("IndexPage");
 
   useEffect(() => {
@@ -22,7 +34,9 @@ const HomePage = () => {
           throw new Error("Network response was not ok");
         }
         const products: Products[] = await res.json();
-        setLastProduct(products.slice(0, 4));
+
+        setLastProduct(products);
+
         // console.log(lastProduct);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -54,13 +68,16 @@ const HomePage = () => {
         </div>
       </div>
       <section className="text-gray-600 px-[7%] body-font">
-        <div className="container px-5  mx-auto">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-2">
+        <div className="container px-5 flex justify-between  mx-auto">
+          <span className="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-2">
             {t("new-products")}
-          </h1>
+          </span>
+          <span className="sm:text-xl text-2xl font-medium title-font text-center text-gray-900 mb-2">
+            <Gender maxs />
+          </span>
         </div>
         <div className="grid md:grid-cols-2 xl:grid-cols-4 grid-cols-2 md:gap-6 gap-2 items-center">
-          {lastProduct.map((product) => (
+          {filteringData.slice(0, 4).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

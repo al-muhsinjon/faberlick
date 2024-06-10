@@ -39,7 +39,6 @@ const RegisterForm = () => {
     }
 
     try {
-      console.log(email, first_name, last_name, password, password2);
       await auth
         .signUp(email, first_name, last_name, password, password2)
         .then((result) => result.json())

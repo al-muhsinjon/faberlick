@@ -11,7 +11,7 @@ import useLanguage from "@/hooks/use-languages";
 import { useLocale, useTranslations } from "next-intl";
 import { Inter, Urbanist } from "next/font/google";
 
-const font = Inter({ subsets: ['latin'] })
+const font = Inter({ subsets: ["latin"] });
 //  Urbanist({ subsets: ["latin"] });
 const Navbar: React.FC = () => {
   const [categories, setCategories] = useState<Categories[]>([]);
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
         <Languages />
         <div className="text-white hidden  xl:flex gap-6">
           <Link href={"/"}>{t("Navbar.help")}</Link>
-          <Link  href="tel:+998973470016">
+          <Link href="tel:+998973470016">
             {/* {t("Navbar.connect")} */}
             +998 97 347 00 16
           </Link>
@@ -70,14 +70,26 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
       </div>
-      <div className="h-auto py-2 flex justify-around border-b flex-wrap gap-5 items-center">
+      <div className="h-auto navigation-scroll py-2 w-auto flex  border-b overflow-x-scroll items-center">
         {categories.map((category) => (
           <Link
-            className={`${font.className} text-main md:text-2xl font-semibold`}
+            className={`${font.className} text-main mx-4 md:text-2xl font-semibold`}
             href={`/${local}/category/${category.id}`}
             key={category.id}
           >
-            {category.translations[language.language].name.toUpperCase()}
+            <div
+              className="uppercase"
+              dangerouslySetInnerHTML={{
+                __html: category?.translations[language.language].name
+                  .split(" ")
+                  .join("&nbsp;"),
+              }}
+            />
+
+            {/* {category.translations[language.language].name
+              .toUpperCase()
+              .split(" ")
+              .join()} */}
           </Link>
         ))}
       </div>

@@ -24,10 +24,9 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
   const products: Products[] = await productRes.json();
 
   const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["number_page"] ?? "10";
+  const per_page = searchParams["number_page"] ?? "20";
   const start = (Number(page) - 1) * Number(per_page); // 0, 5, 10 ...
   const end = start + Number(per_page); // 5, 10, 15 ...
-
 
   const data = categories.filter(
     (category) => category.id === Number(params.categoryId)
@@ -36,21 +35,18 @@ const Category: React.FC<CategoryProps> = async ({ params, searchParams }) => {
     (product) => product.category.id === Number(params.categoryId)
   );
 
-  const paginationData = filterData.splice(start, end);
-
   return (
     <div className="w-full mx-auto  px-[7%]">
       <div className="my-6">
         <Billboard data={data} />
       </div>
       <Gender />
-      <EntriesProduct end={end} start={start} filterData={paginationData} />
+      <EntriesProduct end={end} start={start} filterData={filterData} />
 
       <div>
         <PaginationControls
-          hasNextPage={end < data.length}
           hasPrevPage={start > 0}
-          length={products.length}
+          length={filterData.length}
         />
       </div>
     </div>
