@@ -4,11 +4,9 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "faberlick.pythonanywhere.com",
-      "faberliic.uz",
-      "api.faberliic.uz",
-      "fakestoreapi.com",
+    remotePatterns: [
+      { protocol: "https", hostname: "*" },
+      { protocol: "http", hostname: "*" },
     ],
   },
 };
