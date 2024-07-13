@@ -145,13 +145,13 @@ const ShoppingCart = () => {
                   <div className="sm:ml-4 sm:flex sm:w-full gap-x-4 sm:justify-between">
                     <div className="mt-5 sm:mt-0">
                       <h2 className="text-lg font-bold text-gray-900 line-clamp-1">
-                        {product.translations[lang.language].name}
+                        {product.translations[lang.language]?.name}
                       </h2>
                       <div
                         className="mt-1 text-xs text-gray-700 line-clamp-2"
                         dangerouslySetInnerHTML={{
                           __html:
-                            product?.translations[lang.language].description,
+                            product?.translations[lang.language]?.description,
                         }}
                       />
                       <div className="flex items-center text-sm my-4">

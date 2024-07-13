@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
             <div
               className="uppercase"
               dangerouslySetInnerHTML={{
-                __html: category?.translations[language.language].name
+                __html: category?.translations[language.language]?.name
                   .split(" ")
                   .join("&nbsp;"),
               }}

@@ -25,7 +25,7 @@ const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_FABERLIC_API}/product/product-filterGet/${id}/`
       );
-     
+
       const product: Products = await res.json();
       return product;
     } catch (error) {
@@ -67,10 +67,10 @@ const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
         <div className="divide-2">
           <div className="space-y-2 pb-8">
             <h1 className="text-2xl md:text-4xl font-bold">
-              {product.translations[lang.language].name}
+              {product.translations[lang.language]?.name}
             </h1>
             <h2 className="text-black text-xl opacity-50 md:text-2xl font-bold">
-              {product.translations[lang.language].short_description}
+              {product.translations[lang.language]?.short_description}
             </h2>
             <h2 className="text-gray-500 text-xl md:text-3xl font-bold">
               {formattedPrice}
@@ -80,7 +80,7 @@ const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
             <div
               className="text-xs md:text-sm"
               dangerouslySetInnerHTML={{
-                __html: product?.translations[lang.language].description,
+                __html: product?.translations[lang.language]?.description,
               }}
             />
           </div>
@@ -98,7 +98,7 @@ const ProductDetailedPage: React.FC<Props> = ({ params: { id } }: Props) => {
 
   React.useEffect(() => {
     fetchProduct().then((product) => setProduct(product));
-  }, []);
+  }, [product, setProduct, fetchProduct]);
 
   return product ? renderProductDetails(product) : null;
 };

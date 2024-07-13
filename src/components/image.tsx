@@ -36,7 +36,7 @@ const CustomImage: FC<Props> = ({ product, fill }) => {
               : "scale-100 blur-0 grayscale-0"
           }`}
           onLoad={() => setIsLoading(false)}
-          alt={product.translations.en.name}
+          alt={product.translations.en?.name}
         />
       )}
     </>
